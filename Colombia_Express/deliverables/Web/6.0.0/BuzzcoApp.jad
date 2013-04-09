@@ -1,0 +1,72 @@
+RIM-COD-SHA1-9: cd 1e a1 b7 43 80 22 ed 1e 4b 1e 98 2b de 22 f1 26 8b fa 8c
+RIM-COD-SHA1-8: ca 84 ad b4 ce d2 01 c8 b8 7f 58 3e cd 1e af 7b 25 e4 a8 e3
+RIM-COD-SHA1-7: d1 52 58 3a 47 1c 73 1c 9e b9 70 48 84 63 70 86 18 eb d2 12
+RIM-COD-SHA1-6: 37 b3 ef e4 cd 17 7b 0d 31 50 21 29 de c8 23 d5 83 d0 d8 cb
+RIM-COD-SHA1-5: 55 e9 b5 80 42 57 5f 13 a0 a2 99 21 cb 2e 66 e2 26 bc fe 20
+RIM-COD-SHA1-4: d5 e4 8f bf 7a 48 b2 e3 00 9c 2f ab 66 b6 79 89 ea 3d 3c 61
+RIM-COD-SHA1-3: 30 bd eb 24 48 28 7d cb e4 9b 10 64 fe 11 9c 73 3d f9 88 fe
+RIM-COD-SHA1-2: 1c 03 98 69 64 50 cc 08 31 2f 81 ec 8f 96 92 15 9e d3 37 c1
+RIM-COD-SHA1-1: ac bc fc c8 71 98 4e c1 ec 36 37 10 98 b0 f6 0c fe 8b b0 7c
+RIM-COD-URL-18: BuzzcoApp-18.cod
+RIM-COD-URL-17: BuzzcoApp-17.cod
+RIM-COD-URL-16: BuzzcoApp-16.cod
+RIM-COD-URL-15: BuzzcoApp-15.cod
+RIM-COD-URL-14: BuzzcoApp-14.cod
+RIM-COD-URL-13: BuzzcoApp-13.cod
+RIM-COD-URL-12: BuzzcoApp-12.cod
+RIM-COD-Size: 65420
+RIM-COD-URL-11: BuzzcoApp-11.cod
+RIM-COD-URL-10: BuzzcoApp-10.cod
+MIDlet-Vendor: IMOVES
+Manifest-Version: 1.0
+RIM-MIDlet-Flags-1: 0
+RIM-COD-Size-18: 61944
+RIM-COD-Size-17: 57572
+RIM-COD-Size-16: 50592
+RIM-COD-Size-15: 57172
+RIM-COD-Size-14: 47484
+RIM-COD-Size-13: 55624
+RIM-COD-Size-12: 53616
+RIM-COD-Size-11: 48184
+RIM-COD-Size-10: 50056
+MIDlet-Version: 1.1
+MicroEdition-Profile: MIDP-2.0
+RIM-MIDlet-Position-1: 1
+RIM-COD-URL: BuzzcoApp.cod
+RIM-COD-Creation-Time: 1360007066
+MicroEdition-Configuration: CLDC-1.1
+MIDlet-Jar-URL: BuzzcoApp.jar
+RIM-COD-SHA1-18: 43 fe 21 c0 d7 c8 2e ef 79 ec 4e b8 c6 02 e4 c7 00 fd 0c 36
+RIM-COD-SHA1-17: 09 e2 41 8f b9 a1 5d d8 60 fc 83 31 c1 c0 05 91 f4 f9 bc 8e
+RIM-COD-SHA1-16: 7d f2 18 31 86 84 f3 3e 89 54 f4 0d df c3 d6 be c8 1f 49 a5
+RIM-COD-SHA1-15: 48 f1 54 74 de f0 eb 40 7c a7 28 f2 4c 3b 02 be 46 76 1c 4b
+RIM-COD-SHA1-14: 0d 8a 8c 89 b2 fd ed 97 58 b5 58 40 b8 5f fd 2a 16 96 da c8
+RIM-COD-SHA1-13: 77 cf 60 db b7 a8 21 d5 b7 c3 84 86 7c c6 c7 eb 09 c8 3b aa
+RIM-COD-SHA1-12: ff c9 87 60 64 38 50 2e a2 9a d9 51 17 17 c5 3c 08 45 0b ea
+RIM-COD-Size-9: 50252
+RIM-COD-SHA1-11: 92 79 dc e2 6a 7d d4 9a 67 36 34 8d 9c 29 d4 c0 b6 79 f6 27
+RIM-COD-Size-8: 52972
+RIM-COD-SHA1-10: 2d 7b eb b9 17 28 ac fc fd 2a 64 61 14 cb 8f df 7f fa 4d a6
+RIM-COD-Size-7: 57524
+MIDlet-Description: Buzzco App
+RIM-COD-Size-6: 50304
+RIM-COD-Size-5: 50304
+RIM-COD-Size-4: 63904
+RIM-COD-Size-3: 69156
+RIM-COD-Size-2: 62720
+RIM-COD-Size-1: 60340
+MIDlet-1: BuzzcoApp,img/icon.png,
+MIDlet-Name: BuzzcoApp
+RIM-COD-SHA1: 14 6c 52 19 af 5f 07 9a 74 19 46 7f bb 77 f5 d3 47 f1 8a 10
+RIM-COD-Module-Dependencies: net_rim_cldc,net_rim_ui_extension,net_rim_bb_browser_field2_api,net_rim_database,net_rim_ui_api
+MIDlet-Jar-Size: 1989342
+RIM-COD-URL-9: BuzzcoApp-9.cod
+RIM-COD-URL-8: BuzzcoApp-8.cod
+RIM-COD-URL-7: BuzzcoApp-7.cod
+RIM-COD-URL-6: BuzzcoApp-6.cod
+RIM-COD-URL-5: BuzzcoApp-5.cod
+RIM-COD-URL-4: BuzzcoApp-4.cod
+RIM-COD-URL-3: BuzzcoApp-3.cod
+RIM-COD-URL-2: BuzzcoApp-2.cod
+RIM-COD-URL-1: BuzzcoApp-1.cod
+RIM-COD-Module-Name: BuzzcoApp
