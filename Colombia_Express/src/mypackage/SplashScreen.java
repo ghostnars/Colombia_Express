@@ -1,7 +1,6 @@
 package mypackage;
 
 
-import database.Config;
 import net.rim.device.api.database.Cursor;
 import net.rim.device.api.database.Database;
 import net.rim.device.api.database.DatabaseFactory;
@@ -15,7 +14,8 @@ import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.LabelField;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.MainScreen;
-import noticia.Noticia;
+import promocion.Promocion;
+import database.Config;
 import estilos.Utils;
 
 public class SplashScreen extends MainScreen {

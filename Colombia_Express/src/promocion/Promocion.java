@@ -16,6 +16,7 @@ import net.rim.device.api.io.URI;
 import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.system.Display;
 import net.rim.device.api.ui.Color;
+import net.rim.device.api.ui.DrawStyle;
 import net.rim.device.api.ui.Field;
 import net.rim.device.api.ui.FieldChangeListener;
 import net.rim.device.api.ui.Font;
@@ -50,8 +51,8 @@ import estilos.Metodos;
 public class Promocion extends Metodos implements FieldChangeListener
 {
 	
-	String tipoConexion = Autenticacion.getConnectionString();
-		
+	String tipoConexion = Autenticacion.getConnectionString()[0];
+	String getTipo = Autenticacion.getConnectionString()[1];	
 	String ServiceUrl = "http://www.buzzcoapp.com/admin2/webServices/servicioWeb_promo.php"+tipoConexion; 
 	String ServiceNamespace = "http://i-moves.com/demos/promosApp/webServices";
 	String methodName = "getOfertas";
@@ -165,7 +166,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 				//head.setMargin(0, 0, -5, 0);
 				setBanner(head);
 				
-
+				Dialog.alert(getTipo);
 				validarDatos();
 				
 				
@@ -321,10 +322,10 @@ public class Promocion extends Metodos implements FieldChangeListener
 				vectorPregular.addElement(rc.getString(7));
 				
 				
-				HorizontalFieldManager hfmContent = new HorizontalFieldManager(Field.FIELD_VCENTER);
-				hfmContent.setMargin(-5, 0, -5, 0);
-				VerticalFieldManager vfmLabel = new VerticalFieldManager(Field.FIELD_VCENTER);
 				
+				VerticalFieldManager vfmLabel = new VerticalFieldManager(Field.FIELD_VCENTER);
+				vfmLabel.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.WHITE,Color.WHITE));
+				vfmLabel.setMargin(2, 2, 2, 2);
 				/*HorizontalFieldManager campo = new HorizontalFieldManager(Field.NON_FOCUSABLE) {
 		            protected void sublayout(int width, int height) {
 	                    super.sublayout(iconoWeb, iconoWeb);
@@ -342,23 +343,32 @@ public class Promocion extends Metodos implements FieldChangeListener
 		        campo.add(browserField);
 		        browserField.displayContent(url, "http://localhost");*/
 				
-		        Bitmap bordes = Bitmap.getBitmapResource("rounded-border1.png");
-		        hfmContent.setBorder(BorderFactory.createBitmapBorder(new XYEdges(15,15,15,15), bordes));
+
 		        
-		    	   
-		    	   if(vectorTitulo.elementAt(j).toString().length() > letraLength){
-		    		  String Title = vectorTitulo.elementAt(j).toString().substring(0, letraLength)+"..";
-		    		   lista.addElement(new ListStyleButtonField( null, Title, flecha, 0 ));
-		    		 Title = "";
-		    	   }else{
-		    		   lista.addElement(new ListStyleButtonField( null, vectorTitulo.elementAt(j).toString(), flecha, 0 ));
-		    	   
-		    	   }
+		    		   lista.addElement(new ListStyleButtonField( null, vectorTitulo.elementAt(j).toString(), flecha, DrawStyle.ELLIPSIS){
+		    	            //define width
+		    	            public int getPreferredWidth()
+		    	            {
+		    	                return Display.getWidth();
+		    	            }
+		    	            //define height
+		    	            public int getPreferredHeight()
+		    	            {
+		    	                return 70;
+		    	            }
+		    	            public void layout( int maxWidth, int maxHeight )
+		    	            {
+		    	                super.layout(getPreferredWidth(), 
+		    	                                getPreferredHeight());
+		    	                setExtent(getPreferredWidth(), getPreferredHeight());
+		    	            }
+		    	        });
+		 
 		    	((Field) lista.elementAt(j)).setChangeListener(this);  	
 				vfmLabel.add((Field) lista.elementAt(j));
 				//hfmContent.add(campo);
-				hfmContent.add(vfmLabel);
-				add(hfmContent);	
+				add(vfmLabel);
+	
 				
 				j++;
             }

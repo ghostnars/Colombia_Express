@@ -1,7 +1,6 @@
 package mypackage;
 
 
-import promocion.Promocion;
 import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.system.Display;
 import net.rim.device.api.ui.Color;
@@ -10,20 +9,19 @@ import net.rim.device.api.ui.FieldChangeListener;
 import net.rim.device.api.ui.TransitionContext;
 import net.rim.device.api.ui.Ui;
 import net.rim.device.api.ui.UiEngineInstance;
+import net.rim.device.api.ui.XYEdges;
 import net.rim.device.api.ui.component.BitmapField;
-import net.rim.device.api.ui.component.Dialog;
-import net.rim.device.api.ui.component.LabelField;
 import net.rim.device.api.ui.component.Status;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
-import noticia.CopyOfNoticia;
-import noticia.Noticia;
-import noticia.olach;
+import net.rim.device.api.ui.decor.BorderFactory;
+import promocion.Promocion;
+
+import com.blackberry.facebook.Facebook;
+
 import estilos.BitmapButtonField;
 import estilos.Metodos;
-import galeria.Galeria;
-import galeria.GaleriaWeb;
 
 public final class Menu extends Metodos implements FieldChangeListener
 {
@@ -53,7 +51,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		{
 			
 			tIcono = 110;
-			distancia = 30;
+			distancia = 20;
 			AnchoImagen = 360;	
 			AltoImagen = 44;
 			
@@ -80,7 +78,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		HorizontalFieldManager head = new HorizontalFieldManager(Field.USE_ALL_WIDTH | Field.FIELD_HCENTER | Field.FIELD_VCENTER);
 		head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.SILVER,Color.SILVER));
 		head.add(bitmapImg1);
-		head.setMargin(0, 0, 10, 0);
+		head.setMargin(0, 0, 0, 0);
 		add(head);
 		
 		Bitmap Facebook 	=  resizeBitmap(Bitmap.getBitmapResource("facebook.png"), tIcono, tIcono);
@@ -96,8 +94,10 @@ public final class Menu extends Metodos implements FieldChangeListener
 		Bitmap Promocion	=  resizeBitmap(Bitmap.getBitmapResource("promocion.png"), tIcono, tIcono);
 		Bitmap Promocion1 	=  resizeBitmap(Bitmap.getBitmapResource("promocion1.png"), tIcono, tIcono);
 		
+		Bitmap bordes = Bitmap.getBitmapResource("rounded-border1.png");
 		VerticalFieldManager content = new VerticalFieldManager(Field.USE_ALL_WIDTH|Field.FIELD_HCENTER |Field.FIELD_VCENTER);
-		//content.setMargin(50, 0, 0, 50);
+		content.setBorder(BorderFactory.createBitmapBorder(new XYEdges(15,15,15,15), bordes));
+		//content.setMargin(65, 0, 0, 0);
 		HorizontalFieldManager uno = new HorizontalFieldManager(Field.FIELD_HCENTER |Field.FIELD_VCENTER);
 		
 		btn1 = new BitmapButtonField(Promocion, Promocion1);
@@ -192,7 +192,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		        UiEngineInstance engine = Ui.getUiEngineInstance();
 		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
 				
-		        openScreen(new Noticia());
+		      //  openScreen(new Noticia());
 		        //openScreen(new CopyOfNoticia());
 			}else if(btn3== field){
 				Status.show("Cargando Galeria...",1000 );
@@ -202,7 +202,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		        transition.setIntAttribute(TransitionContext.ATTR_STYLE, TransitionContext.STYLE_PUSH);
 		        UiEngineInstance engine = Ui.getUiEngineInstance();
 		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
-		        openScreen(new GaleriaWeb());
+		        //openScreen(new GaleriaWeb());
 		    
 			}else if(btn4== field){
 				Status.show("Cargando Mapa...",1000 );
@@ -213,7 +213,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		        
 		        UiEngineInstance engine = Ui.getUiEngineInstance();
 		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
-		        openScreen(new Mapas());
+		       // openScreen(new Mapas());
 			}else if(btn5== field){
 					Status.show("Cargando Facebook...");
 	    			TransitionContext transition = new TransitionContext(TransitionContext.TRANSITION_SLIDE);
@@ -224,7 +224,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 	    	        UiEngineInstance engine = Ui.getUiEngineInstance();
 	    	        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
 	            	
-	    	      	openScreen(new Facebook());
+	    	      //	openScreen(new Facebook());
 		    
 			}else if(btn6== field){
 				TransitionContext transition = new TransitionContext(TransitionContext.TRANSITION_SLIDE);

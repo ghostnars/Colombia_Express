@@ -7,16 +7,17 @@ import net.rim.device.api.ui.DrawStyle;
 import net.rim.device.api.ui.Field;
 import net.rim.device.api.ui.FieldChangeListener;
 import net.rim.device.api.ui.Font;
+import net.rim.device.api.ui.Graphics;
 import net.rim.device.api.ui.TransitionContext;
 import net.rim.device.api.ui.Ui;
 import net.rim.device.api.ui.UiApplication;
 import net.rim.device.api.ui.UiEngineInstance;
 import net.rim.device.api.ui.component.BitmapField;
-import net.rim.device.api.ui.component.LabelField;
 import net.rim.device.api.ui.component.RichTextField;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
+import promocion.Promocion;
 import estilos.BitmapButtonField;
 import estilos.Metodos;
 
@@ -61,16 +62,18 @@ public class Perfil extends Metodos implements FieldChangeListener{
 			AnchoImagen = 360;	
 			AltoImagen = 44;
 			
-			imgAncho = 310;
-			imgAlto = 250;
+			imgAncho = 100;
+			imgAlto = 100;
+			
+			tFuente = 30;
 			
 			lateral = 25;
 			
-			facebook0 = Bitmap.getBitmapResource("facebook_310.png");
-			facebook1 = Bitmap.getBitmapResource("facebook_310.png");
+			facebook0 = Bitmap.getBitmapResource("facebook_170.png");
+			facebook1 = Bitmap.getBitmapResource("facebook_170.png");
 			
-			twitter0 = Bitmap.getBitmapResource("twitter_310.png");
-			twitter1 = Bitmap.getBitmapResource("twitter_310.png");
+			twitter0 = Bitmap.getBitmapResource("twitter_170.png");
+			twitter1 = Bitmap.getBitmapResource("twitter_170.png");
 
 		}
 		if (Display.getWidth() == 480)
@@ -102,11 +105,11 @@ public class Perfil extends Metodos implements FieldChangeListener{
 			
 			tFuente = 35;
 			
-			facebook0 = Bitmap.getBitmapResource("facebook_540.png");
-			facebook1 = Bitmap.getBitmapResource("facebook_540.png");
+			facebook0 = Bitmap.getBitmapResource("facebook_170.png");
+			facebook1 = Bitmap.getBitmapResource("facebook_170.png");
 			
-			twitter0 = Bitmap.getBitmapResource("twitter_540.png");
-			twitter1 = Bitmap.getBitmapResource("twitter_540.png");
+			twitter0 = Bitmap.getBitmapResource("twitter_170.png");
+			twitter1 = Bitmap.getBitmapResource("twitter_170.png");
 
 		}
 		Bitmap imagenT 	=  resizeBitmap(Bitmap.getBitmapResource("headImage.png"), AnchoImagen, AltoImagen);
@@ -116,55 +119,78 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		head.add(bitmapImg1);
 		//head.setMargin(0, 0, -5, 0);
 		setBanner(head);
-
+		
+		HorizontalFieldManager Content = new HorizontalFieldManager(Field.USE_ALL_WIDTH);
+		Content.setBackground(BackgroundFactory.createLinearGradientBackground(Color.BLACK, Color.BLACK,Color.BLACK,Color.BLACK));
+		
+		HorizontalFieldManager cImagen = new HorizontalFieldManager();
+		VerticalFieldManager cTitulo = new VerticalFieldManager();
+		
+		BitmapField imgPerfil = new BitmapField(resizeBitmap(Bitmap.getBitmapResource("img4.jpg"), imgAncho, imgAlto ));
+		cImagen.add(imgPerfil);
+		cImagen.setMargin(5,5,5,5);
 		
 		VerticalFieldManager perfil = new VerticalFieldManager(Field.FIELD_HCENTER);
 		
-		Bitmap bitmapImage = resizeBitmap(Bitmap.getBitmapResource("img4.jpg"), imgAncho, imgAlto );
+		RichTextField nombre = new RichTextField("Colombia Express",RichTextField.FIELD_HCENTER){
+	        public void paint(Graphics g){      
+	            g.setColor(Color.WHITE);
+	            super.paint(g);
+	        }};
+		nombre.setMargin(15, 10, 10, 10);
+		nombre.setFont(nombre.getFont().derive(Font.FANTASY_STYLE ,tFuente, Ui.UNITS_px));
 		
-
+		RichTextField Ubicacion = new RichTextField("Ubicacion del perfil"){
+	        public void paint(Graphics g){      
+	            g.setColor(Color.SILVER);
+	            super.paint(g);
+	        }};
+		Ubicacion.setMargin(15, 10, 10, 10);
 		
-		BitmapField imagenBanner = new BitmapField(bitmapImage); 
-		imagenBanner.setMargin(10, 10, 5, 10);
 		
-		RichTextField nombre = new RichTextField("Nombre del perfil",RichTextField.FIELD_HCENTER);
-		nombre.setMargin(15, 10, 10, lateral);
-		nombre.setFont(nombre.getFont().derive(Font.BOLD ,tFuente, Ui.UNITS_px));
-		
-		RichTextField Ubicacion = new RichTextField("Ubicacion del perfil");
-		Ubicacion.setMargin(15, 10, 10, lateral);
 		
 		HorizontalFieldManager btnContent = new HorizontalFieldManager(Field.FIELD_HCENTER);
 		
 		BitmapButtonField btnFacebook = new BitmapButtonField(facebook0, facebook1);
 		btnFacebook.setChangeListener(this);
-		btnFacebook.setMargin(5, 10, 10, 15);
+		btnFacebook.setMargin(5, 5, 10, 5);
 		btnContent.add(btnFacebook);
 		
 		BitmapButtonField btnTwitter = new BitmapButtonField(twitter0, twitter1);
 		btnTwitter.setChangeListener(this);
-		btnTwitter.setMargin(5, 15, 10, 10);
+		btnTwitter.setMargin(5, 5, 10, 5);
 		btnContent.add(btnTwitter);
 
 		
-		
-		
+		RichTextField tituloDetalle = new RichTextField("Colombia Express",RichTextField.FIELD_HCENTER){
+	        public void paint(Graphics g){      
+	            g.setColor(Color.DIMGRAY);
+	            super.paint(g);
+	        }};
+	    tituloDetalle.setMargin(15, 10, 10, 10);
+	    tituloDetalle.setFont(nombre.getFont().derive(Font.SANS_SERIF_STYLE ,tFuente, Ui.UNITS_px));
+	    
 		RichTextField descripcion = new RichTextField(
 				"BUZZCOAPPS se centra en crear una aplicación en tiempo record sin complicaciones ni trabas para agilizar el proceso de tu negocio; " +
 				"siempre dentro de un presupuesto accesible obteniendo para tu empresa calidad en tecnología.", DrawStyle.HALIGN_MASK
-				);
-		descripcion.setMargin(0, lateral, 20, lateral);
+				){
+	        public void paint(Graphics g){      
+	            g.setColor(Color.GRAY);
+	            super.paint(g);
+	        }};
+		descripcion.setMargin(0, 10, 20, 10);
 		
 		
 		
 		
-		add(nombre);		
-		perfil.add(imagenBanner);
-		add(Ubicacion);
-		
+		cTitulo.add(nombre);		
+		cTitulo.add(Ubicacion);
+		Content.add(cImagen);
+		Content.add(cTitulo);
+		add(Content);
 		add(perfil);
-		
-		add(btnContent);
+		//add(btnContent);
+		add(tituloDetalle);
 		add(descripcion);
 	}
 	

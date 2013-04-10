@@ -2,7 +2,6 @@ package promocion;
 
 import javax.microedition.io.file.FileConnection;
 
-import mypackage.Menu;
 import net.rim.device.api.browser.field2.BrowserField;
 import net.rim.device.api.browser.field2.BrowserFieldConfig;
 import net.rim.device.api.io.URI;
@@ -19,11 +18,10 @@ import net.rim.device.api.ui.Ui;
 import net.rim.device.api.ui.UiEngineInstance;
 import net.rim.device.api.ui.XYEdges;
 import net.rim.device.api.ui.component.BitmapField;
-import net.rim.device.api.ui.component.Dialog;
 import net.rim.device.api.ui.component.LabelField;
+import net.rim.device.api.ui.component.Menu;
 import net.rim.device.api.ui.component.RichTextField;
 import net.rim.device.api.ui.component.SeparatorField;
-import net.rim.device.api.ui.component.Status;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
@@ -269,7 +267,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 				btnTwitter.setChangeListener(this);
 				btnTwitter.setMargin(10, 15, 60, 15);
 				btnContent.add(btnTwitter);
-				add(btnContent);
+				//add(btnContent);
 				
 			}
 	
@@ -278,15 +276,6 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		// TODO Auto-generated method stub
 		if(btnUpdate == field){
 			System.exit(0);
-		}
-		if(btnHome== field){
-			TransitionContext transition = new TransitionContext(TransitionContext.TRANSITION_SLIDE);
-	        transition.setIntAttribute(TransitionContext.ATTR_DURATION, 200);
-	        transition.setIntAttribute(TransitionContext.ATTR_DIRECTION, TransitionContext.DIRECTION_RIGHT);
-	        transition.setIntAttribute(TransitionContext.ATTR_STYLE, TransitionContext.STYLE_PUSH);
-	        UiEngineInstance engine = Ui.getUiEngineInstance();
-	        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
-			openScreen(new Menu());
 		}
 	}
 	

@@ -1,13 +1,13 @@
 <loader version="1.0">
-	<application id="BuzzcoApp">
+	<application id="ColombiaExpress">
 		<name >
-			BuzzcoApp
+			Colombia Express
 		</name>
 		<description >
-			Buzzco App
+			Colombia Express App
 		</description>
 		<version >
-			1.1
+			1.0
 		</version>
 		<vendor >
 			IMOVES
@@ -15,22 +15,12 @@
 		<copyright >
 			Copyright (c) 2013 IMOVES
 		</copyright>
-		<fileset Java="1.55" _blackberryVersion="[5.0.0,5.0.1)">
+		<fileset Java="1.55" _blackberryVersion="[5.0.0)">
 			<directory >
 				5.0.0
 			</directory>
 			<files >
-				BuzzcoApp.cod
-
-			</files>
-
-		</fileset>
-		<fileset Java="1.55" _blackberryVersion="[6.0.0)">
-			<directory >
-				6.0.0
-			</directory>
-			<files >
-				BuzzcoApp.cod
+				ColombiaExpress.cod
 
 			</files>
 

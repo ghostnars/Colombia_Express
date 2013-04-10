@@ -1,29 +1,14 @@
 package database;
 public class Config {
 	
-	private String version = "0.1.7.sqlite";
+	private String version = "0.0.1.sqlite";
 	private String path;
 	
 	public String Path(){
-		path = "file:///SDCard/Databases/BuzzCOApp/BuzzCO_"+version;
+		path = "file:///SDCard/Databases/Colombia_Express/Colombia_db"+version;
 		return path;		
 	}
-	public String PathImg1(){
-		path = "file:///SDCard/Databases/BuzzApp/Image/";
-		return path;		
-	}
-	public String PathImg2(){
-		path = "file:///SDCard/Databases/BuzzApp/Image/";
-		return path;		
-	}
-	public String PathNoticia(){
-		path = "file:///SDCard/PromoApp/Image/Noticia/";
-		return path;		
-	}
-	public String PathAfiliado(){
-		path = "file:///SDCard/PromoApp/Image/Afiliado/";
-		return path;		
-	}
+	
 	
 	/*==============CREAR===============*/
 
