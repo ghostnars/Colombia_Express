@@ -65,7 +65,7 @@ public class MyApp extends UiApplication
 	     }catch (Exception e){
 	    	 e.printStackTrace();
 	     }finally{  	
-	        splashScreen = new SplashScreen();
+	        splashScreen = new 	SplashScreen();
 	        pushScreen( splashScreen );
 	     }
     }    

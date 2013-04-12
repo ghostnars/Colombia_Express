@@ -1,21 +1,22 @@
-RIM-COD-SHA1-9: b3 29 a9 7c d5 8f bf 56 dd 92 a5 82 0b 8c 10 1c 2d a3 b0 05
-RIM-COD-SHA1-8: da b8 f6 f4 4c a0 50 37 1a e8 1d a9 80 1d de d6 5d 69 11 f7
-RIM-COD-SHA1-7: e4 de 9b ba f6 c1 e8 a8 f3 41 fa dc 12 dd 49 0b 39 8e 64 33
-RIM-COD-Size-28: 65208
-RIM-COD-SHA1-6: 09 99 ea 6a 1d 05 09 51 38 c2 26 82 25 33 7a dd b6 0f 78 d6
-RIM-COD-Size-27: 56916
-RIM-COD-SHA1-5: 3d e8 7c 50 08 ad ac 25 11 a8 44 ce fc 47 ba 1e 63 06 c9 59
-RIM-COD-Size-26: 53612
-RIM-COD-SHA1-4: 8a 09 3e 43 d8 c2 88 2d d5 ea 1d 79 63 cb cd 9b 7c 7c 79 7e
-RIM-COD-Size-25: 47332
-RIM-COD-SHA1-3: 0c f8 7b de 29 94 fc db c6 53 45 b7 3c 8b 78 5b 23 1b 49 b4
-RIM-COD-Size-24: 53420
-RIM-COD-SHA1-2: 39 17 1a 2b 2a ca ef 63 78 49 2e 48 d4 b6 5b 89 09 18 dc 3e
-RIM-COD-Size-23: 62164
-RIM-COD-SHA1-1: ac 62 fe 63 13 14 8e be 23 56 13 a9 ed cb d8 5f 2e 19 bd ba
-RIM-COD-Size-22: 50752
-RIM-COD-Size-21: 50740
-RIM-COD-Size-20: 56788
+RIM-COD-SHA1-9: 4b 27 c5 3e f8 b6 38 ca 01 07 da e8 d0 3e a4 5b c0 75 d4 64
+RIM-COD-SHA1-8: eb 84 0e ca fc b0 a2 5a ab a4 2d 92 6a 56 2f 31 e5 f1 3b f1
+RIM-COD-Size-29: 50828
+RIM-COD-SHA1-7: 24 73 d0 13 1d e3 44 44 a4 06 64 ec 62 c0 bb 03 c9 8a 56 04
+RIM-COD-Size-28: 56996
+RIM-COD-SHA1-6: 61 24 a7 38 b6 23 b2 6f 19 a3 87 27 9b 29 15 f7 8f a7 87 03
+RIM-COD-Size-27: 50592
+RIM-COD-SHA1-5: 5b 76 03 4d 38 e5 43 37 67 b8 6b 07 76 5c 30 f9 8d bf 29 20
+RIM-COD-Size-26: 50788
+RIM-COD-SHA1-4: 3a d6 b6 f0 65 8b b3 20 b6 83 7f 93 5a 7e 6d f2 aa 3e 40 e5
+RIM-COD-Size-25: 58084
+RIM-COD-SHA1-3: c4 53 9b c7 54 1e 10 10 51 06 c5 6d bc 1d 6a 7c 07 95 02 b6
+RIM-COD-Size-24: 50840
+RIM-COD-SHA1-2: a2 5d db ad 75 2e 96 06 9b b9 f9 9b 34 5b ac 58 c3 b9 70 00
+RIM-COD-Size-23: 50840
+RIM-COD-SHA1-1: f9 ed ea f5 d4 77 79 5b 26 ba 3e 98 4e 77 36 7f a3 b4 69 b2
+RIM-COD-Size-22: 59652
+RIM-COD-Size-21: 50840
+RIM-COD-Size-20: 52668
 RIM-COD-URL-19: ColombiaExpress-19.cod
 RIM-COD-URL-18: ColombiaExpress-18.cod
 RIM-COD-URL-17: ColombiaExpress-17.cod
@@ -24,72 +25,101 @@ RIM-COD-URL-15: ColombiaExpress-15.cod
 RIM-COD-URL-14: ColombiaExpress-14.cod
 RIM-COD-URL-13: ColombiaExpress-13.cod
 RIM-COD-URL-12: ColombiaExpress-12.cod
-RIM-COD-Size: 66272
+RIM-COD-Size: 66644
 RIM-COD-URL-11: ColombiaExpress-11.cod
 RIM-COD-URL-10: ColombiaExpress-10.cod
 MIDlet-Vendor: IMOVES
 Manifest-Version: 1.0
 RIM-MIDlet-Flags-1: 0
-RIM-COD-Size-19: 50384
-RIM-COD-Size-18: 50580
-RIM-COD-Size-17: 57876
-RIM-COD-Size-16: 50632
-RIM-COD-Size-15: 50632
-RIM-COD-Size-14: 50632
-RIM-COD-Size-13: 49964
-RIM-COD-Size-12: 52460
-RIM-COD-Size-11: 31872
-RIM-COD-Size-10: 41096
+RIM-COD-SHA1-38: 64 c0 c2 ea 27 93 c5 72 c8 01 99 34 1a d9 d9 f8 08 0f 51 4d
+RIM-COD-SHA1-37: 97 01 25 e4 b3 80 97 bc 5e 72 14 88 ab 11 f1 4a 9d ae ba 4c
+RIM-COD-Size-19: 32080
+RIM-COD-SHA1-36: a2 69 bc f5 39 cb cd 05 46 43 95 b7 4f 73 02 4c bd d2 d9 54
+RIM-COD-Size-18: 41308
+RIM-COD-SHA1-35: d7 a3 d9 7c af 27 72 74 1d ee 7c 25 4a f4 40 ea 13 c8 70 a7
+RIM-COD-Size-17: 54848
+RIM-COD-SHA1-34: f0 a0 ad e4 5b a7 35 1f cd ec 57 63 11 a0 17 3d 49 db 11 52
+RIM-COD-Size-16: 45688
+RIM-COD-SHA1-33: 7c e0 f1 e4 ac b9 3f cd 64 31 10 e0 41 f1 3e 9a 17 d1 64 c4
+RIM-COD-Size-15: 55936
+RIM-COD-SHA1-32: b6 f4 98 3c a1 48 9a 91 10 3b 86 91 4e 71 f7 0c 10 8b ba 67
+RIM-COD-Size-14: 60668
+RIM-COD-SHA1-31: ff 2a 61 f5 ff c6 16 27 bb 79 58 f9 52 fa ae ff da 9c 91 2b
+RIM-COD-Size-13: 50704
+RIM-COD-SHA1-30: 54 24 54 6a eb 1e a2 2d b6 82 84 7c a9 7f d1 1d 98 60 fb f2
+RIM-COD-Size-12: 56128
+RIM-COD-Size-11: 52388
+RIM-COD-Size-10: 43128
 MIDlet-Version: 1.0
 MicroEdition-Profile: MIDP-2.0
-RIM-COD-SHA1-28: 0b b2 09 71 15 00 fe 56 b1 eb 3a 5a 18 7a e3 d9 b4 12 d4 a5
+RIM-COD-SHA1-29: 27 04 2d bd 36 ff 67 b8 59 02 2b 0a bc 0b 9a 98 b9 f5 4f f8
+RIM-COD-SHA1-28: 90 09 19 90 2f be 2d 0f 45 14 75 35 25 c2 9d 3a 6f 73 66 99
 RIM-MIDlet-Position-1: 1
-RIM-COD-SHA1-27: 9f 2e 27 ad 07 1e 61 ab 6f 15 13 76 ce 07 a5 b9 e7 5f 7d 5d
-RIM-COD-SHA1-26: 44 aa f3 cf e0 42 bc a6 30 32 9a da 68 97 6c ce 03 bf fc 20
-RIM-COD-SHA1-25: fc ce dc 0b 3c 0b eb 4e b0 10 a2 e9 cb 97 b4 09 cd 44 74 1e
-RIM-COD-SHA1-24: da cd af f7 ac 10 3b f2 a3 f3 67 61 72 a2 1d 40 eb 20 5c 85
-RIM-COD-SHA1-23: 3b df 2c ba 8c b1 0d 03 8b 20 42 be e1 f6 4f 59 76 e7 2a c1
-RIM-COD-SHA1-22: 8f a1 86 1c a5 b3 ef cf 45 14 0d ef 92 0e 3d 08 60 f7 08 88
-RIM-COD-SHA1-21: 71 1c 0a 17 59 40 d4 f4 67 52 99 ef fe 45 09 09 ff 1a ed d6
-RIM-COD-SHA1-20: d1 ce 8a b0 d4 08 71 37 b2 b3 0f 07 28 44 39 26 7b a7 0f 71
+RIM-COD-SHA1-27: 70 18 5b 20 3b 30 a7 5a d5 59 5e a6 31 9b ac 61 42 99 8a ef
+RIM-COD-SHA1-26: 17 e6 1b d7 ec 65 be 3e 15 2a 6d 69 1b 24 8f 8c 26 0b 43 13
+RIM-COD-SHA1-25: 1c f3 3d d3 2f fc cd d8 5a f6 df fc 36 2b 57 3a 63 8a a0 6e
+RIM-COD-SHA1-24: f0 0d 05 f8 fc 51 56 c8 41 95 b1 3c 73 f3 41 8a 5a b5 e0 e5
+RIM-COD-SHA1-23: 2c 26 44 e0 81 9b de a8 6b 9e 57 80 70 50 24 57 d5 47 1b 25
+RIM-COD-SHA1-22: be c9 b0 db b5 e2 7d 1f 2d a8 6a 26 7b 6e 77 8c 2b af 67 9b
+RIM-COD-SHA1-21: eb 6a 3e eb 4b aa dc ab 39 8c ad a4 3d 06 bb cc 76 a6 35 9c
+RIM-COD-SHA1-20: d3 3e 60 df dc 19 d2 33 44 94 33 39 05 c5 83 9f 18 db 53 3a
 RIM-COD-URL: ColombiaExpress.cod
-RIM-COD-Creation-Time: 1365552184
+RIM-COD-Creation-Time: 1365725168
 MicroEdition-Configuration: CLDC-1.1
 MIDlet-Jar-URL: BuzzcoApp.jar
-RIM-COD-SHA1-19: 71 e2 af d1 d4 fd 0a 1c be 4d b4 08 5d 67 db 43 50 dd ee 87
-RIM-COD-SHA1-18: 36 8c eb 00 e4 91 a2 7a b8 00 8b 04 84 8f e5 84 e6 6e 9d 75
-RIM-COD-SHA1-17: 98 07 9e de ec 6e 44 ea b7 59 0e 05 1e 89 1a 1d 30 e8 13 40
-RIM-COD-SHA1-16: a8 74 f5 7c c1 a4 80 ab 57 c2 6d 4c 86 b0 c5 d0 dc b9 ef 1c
-RIM-COD-SHA1-15: 44 1c d1 77 c0 b3 9a ce df 51 67 8d 05 ff de 70 39 c5 ef c7
-RIM-COD-SHA1-14: 9b 63 22 07 0c 36 7e 0b 99 28 14 06 0f 5c d8 d4 76 0a 1f e1
-RIM-COD-SHA1-13: 78 ca 8f 6f 42 b8 88 fd 47 54 d4 f7 e6 89 df c0 0a b2 47 3b
-RIM-COD-SHA1-12: 7a 8d aa f7 5e 56 3c 92 16 dd 21 91 21 99 50 5a e4 0e 50 b9
-RIM-COD-Size-9: 54636
-RIM-COD-SHA1-11: 1c 44 4b bf 16 95 72 4e 5f 49 76 28 ef 2b 89 bc f6 5b d0 72
-RIM-COD-Size-8: 48544
-RIM-COD-SHA1-10: 8c fd 32 b3 db 80 78 4e 60 2d 8f ae ae ce 2d f0 7c c2 2f 35
-RIM-COD-Size-7: 45476
+RIM-COD-SHA1-19: 30 22 84 3f b6 39 c7 4d 1d aa da 8a 83 34 31 90 c8 60 b9 0b
+RIM-COD-SHA1-18: ca 32 39 41 10 16 dc e2 db 68 8b 4e 20 67 e7 5e cb 6d bb 2b
+RIM-COD-SHA1-17: 5f 74 dd c9 c4 1d 56 89 69 d5 90 9d 7e ac ed 50 8d fa 8c 18
+RIM-COD-SHA1-16: 70 75 f2 25 33 10 fe 1c 85 fa dd 32 48 df d9 5e 54 da bf 19
+RIM-COD-SHA1-15: b2 72 ca 9e 0f 4f b0 db 5f 20 da 4a 05 4b af 90 65 27 29 06
+RIM-COD-SHA1-14: 9f f1 37 ef d8 8c 04 73 c6 15 2c cd af af c4 6c 82 2d 1c 8c
+RIM-COD-SHA1-13: da 2c 97 b0 08 80 7b 50 17 0f 27 8a bd 17 a0 57 0f 24 ea e6
+RIM-COD-SHA1-12: 4f f0 55 6d 63 17 dd ff 6f 99 ca 7b 9e 8f 06 bc 99 98 1b f1
+RIM-COD-Size-9: 46788
+RIM-COD-SHA1-11: 63 21 44 60 3e 16 c4 38 2b 73 53 8a 91 04 56 d9 c5 0f 5c b4
+RIM-COD-Size-8: 44804
+RIM-COD-SHA1-10: 36 da 95 fc 27 7a 83 a4 bb 00 d3 87 b8 02 8d a8 df 02 6f 21
+RIM-COD-Size-7: 58012
 MIDlet-Description: Colombia Express App
-RIM-COD-Size-6: 61504
-RIM-COD-Size-5: 62960
-RIM-COD-Size-4: 70928
-RIM-COD-Size-3: 64148
-RIM-COD-Size-2: 64100
-RIM-COD-Size-1: 66340
+RIM-COD-Size-6: 64604
+RIM-COD-Size-5: 67740
+RIM-COD-Size-4: 70912
+RIM-COD-Size-3: 64776
+RIM-COD-Size-2: 63848
+RIM-COD-Size-1: 66176
 MIDlet-1: Colombia Express,img/icon.png,
 MIDlet-Name: BuzzcoApp
-RIM-COD-SHA1: df 9b 78 e2 46 32 bc ed 14 1f e5 54 77 32 5b 2b 70 d5 85 1e
-RIM-COD-Module-Dependencies: net_rim_cldc,net_rim_networkapi,net_rim_bb_browser_field2_api,net_rim_xml_org,net_rim_os,net_rim_bbapi_browser,net_rim_database
-MIDlet-Jar-Size: 2619424
+RIM-COD-SHA1: 4b 88 e2 3e 5c 7b 5d b1 c1 aa 22 e3 e2 9f 28 77 59 67 41 02
+RIM-COD-Module-Dependencies: net_rim_cldc,net_rim_networkapi,net_rim_bb_browser_field2_api,net_rim_xml_org,net_rim_os,net_rim_bbapi_browser,net_rim_bbapi_mailv2,net_rim_bbapi_invoke,net_rim_database
+MIDlet-Jar-Size: 3647865
+RIM-COD-URL-38: ColombiaExpress-38.cod
+RIM-COD-URL-37: ColombiaExpress-37.cod
+RIM-COD-URL-36: ColombiaExpress-36.cod
+RIM-COD-URL-35: ColombiaExpress-35.cod
+RIM-COD-URL-34: ColombiaExpress-34.cod
+RIM-COD-URL-33: ColombiaExpress-33.cod
+RIM-COD-URL-32: ColombiaExpress-32.cod
+RIM-COD-URL-31: ColombiaExpress-31.cod
+RIM-COD-URL-30: ColombiaExpress-30.cod
 RIM-COD-URL-9: ColombiaExpress-9.cod
 RIM-COD-URL-8: ColombiaExpress-8.cod
 RIM-COD-URL-7: ColombiaExpress-7.cod
 RIM-COD-URL-6: ColombiaExpress-6.cod
 RIM-COD-URL-5: ColombiaExpress-5.cod
 RIM-COD-URL-4: ColombiaExpress-4.cod
+RIM-COD-Size-38: 59440
 RIM-COD-URL-3: ColombiaExpress-3.cod
+RIM-COD-Size-37: 62376
 RIM-COD-URL-2: ColombiaExpress-2.cod
+RIM-COD-Size-36: 54752
 RIM-COD-URL-1: ColombiaExpress-1.cod
+RIM-COD-Size-35: 60404
+RIM-COD-Size-34: 50960
+RIM-COD-Size-33: 44720
+RIM-COD-Size-32: 58136
+RIM-COD-Size-31: 50832
+RIM-COD-Size-30: 57256
+RIM-COD-URL-29: ColombiaExpress-29.cod
 RIM-COD-URL-28: ColombiaExpress-28.cod
 RIM-COD-URL-27: ColombiaExpress-27.cod
 RIM-COD-URL-26: ColombiaExpress-26.cod

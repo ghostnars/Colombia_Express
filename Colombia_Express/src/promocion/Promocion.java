@@ -1,18 +1,19 @@
 package promocion;
 
+import java.rmi.RemoteException;
 import java.util.Vector;
 
 import javax.microedition.io.file.FileConnection;
 
+import mypackage.ErrorPage;
 import mypackage.Menu;
-import net.rim.device.api.browser.field2.BrowserField;
-import net.rim.device.api.browser.field2.BrowserFieldConfig;
 import net.rim.device.api.database.Cursor;
 import net.rim.device.api.database.Database;
 import net.rim.device.api.database.DatabaseFactory;
 import net.rim.device.api.database.Row;
 import net.rim.device.api.database.Statement;
 import net.rim.device.api.io.URI;
+import net.rim.device.api.system.Application;
 import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.system.Display;
 import net.rim.device.api.ui.Color;
@@ -20,21 +21,20 @@ import net.rim.device.api.ui.DrawStyle;
 import net.rim.device.api.ui.Field;
 import net.rim.device.api.ui.FieldChangeListener;
 import net.rim.device.api.ui.Font;
-import net.rim.device.api.ui.FontFamily;
+import net.rim.device.api.ui.MenuItem;
 import net.rim.device.api.ui.TransitionContext;
 import net.rim.device.api.ui.Ui;
 import net.rim.device.api.ui.UiApplication;
 import net.rim.device.api.ui.UiEngineInstance;
-import net.rim.device.api.ui.XYEdges;
 import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.Dialog;
 import net.rim.device.api.ui.component.LabelField;
-import net.rim.device.api.ui.component.RichTextField;
 import net.rim.device.api.ui.component.Status;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
-import net.rim.device.api.ui.decor.BorderFactory;
+import net.rim.device.api.ui.image.Image;
+import net.rim.device.api.ui.image.ImageFactory;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -42,7 +42,6 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransport;
 
 import database.Autenticacion;
-
 import database.Config;
 import estilos.BitmapButtonField;
 import estilos.ListStyleButtonField;
@@ -56,7 +55,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 	String ServiceUrl = "http://www.buzzcoapp.com/admin2/webServices/servicioWeb_promo.php"+tipoConexion; 
 	String ServiceNamespace = "http://i-moves.com/demos/promosApp/webServices";
 	String methodName = "getOfertas";
-	String idAfiliado = "31";
+	String idAfiliado = "32";
 	int y,x,z;
 	int ax,bx;
 	
@@ -95,18 +94,22 @@ public class Promocion extends Metodos implements FieldChangeListener
 	private String Desc;
 	int AnchoImagen = 640;
 	int AltoImagen = 79;
+	int flag = 0;
+	 private int tLista =60;
 	Bitmap flecha = Bitmap.getBitmapResource("flecha.png");
-	public Promocion()
+	public Promocion(int bandera)
 	{	
+		flag = bandera;
 		Bitmap bitmapImg = Bitmap.getBitmapResource("gray.jpg");	
 		//getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
-		getMainManager().setBackground(BackgroundFactory.createSolidBackground(0xcecdcd));
+		getMainManager().setBackground(BackgroundFactory.createLinearGradientBackground(Color.SILVER, Color.SILVER,Color.SILVER,Color.SILVER));
 		
 		//Dialog.alert(tipoConexion);
 		if (Display.getWidth() == 320)
 		{
 			AnchoImagen = 320;	
 			AltoImagen = 39;
+			tLista = 50;
 		}
 		if (Display.getWidth() == 360)
 		{
@@ -114,16 +117,20 @@ public class Promocion extends Metodos implements FieldChangeListener
 			letraLength = 29;
 			AnchoImagen = 360;	
 			AltoImagen = 44;
+			tLista = 70;
 		}
 		if (Display.getWidth() == 480)
 		{
 			letraLength = 35;
-			AnchoImagen = 480;	
-			AltoImagen = 59;
+			AnchoImagen = 360;	
+			AltoImagen = 44;
+			tLista = 70;
 		}	
 		if (Display.getWidth() == 640)
 		{
-	
+			tLista = 100;
+			AnchoImagen = 480;	
+			AltoImagen = 58;
 		}
 		 
 
@@ -166,12 +173,73 @@ public class Promocion extends Metodos implements FieldChangeListener
 				//head.setMargin(0, 0, -5, 0);
 				setBanner(head);
 				
-				Dialog.alert(getTipo);
+			Status.show(getTipo, 2000);
 				validarDatos();
-				
-				
-    }
+			
+				MenuItem _viewItem1 = new MenuItem(" Actualizar lista", 110, 0){
+					
+					public void run(){
+						
+						UiApplication.getUiApplication().invokeLater(new Runnable(){
+							
+				    		public void run(){
+								Object[] choices = new Object[] {"Aceptar", "Cancelar"};
+								int result = Dialog.ask("Seguro que desea Actualizar", choices, 1);
+								switch (result) {
+								case 0:
+									try {
+										actualizarDatos();
+									} catch (Exception e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+										cambiar();
+									}
+									
+									break;
+								case 1:
+									
+									break;
+								}				
+							}
+				    	});    	 
+						   	 
+						
+			        }
+			  	};
+
+			Image menuIcon = ImageFactory.createImage(Bitmap.getBitmapResource("sync.png"));
+		    _viewItem1.setIcon(menuIcon);
+		    addMenuItem(_viewItem1);
 	
+    }
+	public void cambiar(){
+		//openScreen(new ErrorPage());
+	
+	Application.getApplication().invokeLater(
+		    new Runnable() {
+		        public void run() {
+		            Ui.getUiEngine().pushScreen(new ErrorPage());
+		        }
+		    }
+		);
+	}
+	public void eliminarDatos(){
+		try
+		{
+			URI uri1 = URI.create(path.Path());
+			Database sqliteDB1 = DatabaseFactory.open(uri1); 
+			Statement in = sqliteDB1.createStatement("DELETE FROM OFERTA");
+			in.prepare();
+			in.execute();
+			in.close();
+			sqliteDB1.close();		
+			
+		}
+		catch(Exception e)
+		{	
+			Dialog.alert(e.toString()+"error en el insert");
+		}
+	};
 	public void validarDatos(){
 		try{
 			uri = URI.create(path.Path());
@@ -190,21 +258,52 @@ public class Promocion extends Metodos implements FieldChangeListener
 				se.close();
 				sqliteDB.close();	
 				//Dialog.alert("con inter");
-				Status.show("Descargando Datos...",1000 );
-				descargarDatos();
+				
+				
+				if(getTipo.equals("wifi")){
+					Status.show("Descargando Datos...");
+					descargarDatos();
+					
+				}else if(getTipo.equals("BIBS")){
+					Status.show("Parece que está en una conexion lenta, puede tardar un momento");
+					descargarDatos();
+					
+				}else if(getTipo.equals("error")){
+					Status.show("Error de red",1000 );
+					cambiar();
+				}
+				
 			}else if(incremento >= 1){
 				c.close();
 				se.close();
 				sqliteDB.close();	
 				//Dialog.alert("sin inter");
-				Status.show("Cargando Datos...",1000 );
-				cargarDatos();
+				//Status.show("Cargando Datos...",1000 );
+				if(flag == 0){
+					
+					if(getTipo.equals("wifi")){
+						eliminarDatos();
+						descargarDatos();
+					}else if(getTipo.equals("BIBS")){
+						//Status.show("Parece que esta en una conexion lenta");
+						//eliminarDatos();
+						//Status.show("Cargando Datos...",1000 );
+						cargarDatos();
+					}else if(getTipo.equals("error")){
+						//Status.show("Cargando Datos sin conexión...",1000 );
+						cargarDatos();
+					}else{
+						cargarDatos();
+					}
+				}else if(flag == 1 ){
+					cargarDatos();
+				}
 			}else{
 				c.close();
 				se.close();
 				sqliteDB.close();
 				//Dialog.alert("problemas");
-				descargarDatos();
+				cambiar();
 			}
 			
 		}catch(Exception e){
@@ -216,8 +315,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 	
 	 public void descargarDatos(){
 		try{
-			Bitmap bitmapImg = Bitmap.getBitmapResource("gray.jpg");
-			getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
+			
 			
 			SoapObject rpc = new SoapObject(ServiceNamespace, methodName);
 			rpc.addProperty("idAfiliado", idAfiliado );
@@ -282,6 +380,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 					catch(Exception e)
 					{	
 						Dialog.alert(e.toString()+"error en el insert");
+						cambiar();
 					}
 					/*id = "";
 					nombre ="";
@@ -297,6 +396,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 	        cargarDatos();
 		}catch(Exception e){
 			Dialog.alert(e.getMessage() + "error en ofertas");
+			cambiar();
 		} 
 		
 	}
@@ -326,27 +426,13 @@ public class Promocion extends Metodos implements FieldChangeListener
 				VerticalFieldManager vfmLabel = new VerticalFieldManager(Field.FIELD_VCENTER);
 				vfmLabel.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.WHITE,Color.WHITE));
 				vfmLabel.setMargin(2, 2, 2, 2);
-				/*HorizontalFieldManager campo = new HorizontalFieldManager(Field.NON_FOCUSABLE) {
-		            protected void sublayout(int width, int height) {
-	                    super.sublayout(iconoWeb, iconoWeb);
-	                }
-	            };
 				
-				String url = "<img width='"+iconoWeb+"' height='"+iconoWeb+"' style='background:transparent;border:none;margin-left: -8px;margin-top: -8px;padding-right: -118px;margin-bottom: -8px;' src='"+vectorImagen.elementAt(j).toString()+"'/>";
-				
-				BrowserFieldConfig myBrowserFieldConfig = new BrowserFieldConfig();
-		        myBrowserFieldConfig.setProperty(BrowserFieldConfig.NAVIGATION_MODE,BrowserFieldConfig.NAVIGATION_MODE_NONE );
-		        myBrowserFieldConfig.setProperty(BrowserFieldConfig.ENABLE_COOKIES,Boolean.TRUE);
-		        myBrowserFieldConfig.setProperty(BrowserFieldConfig.ENABLE_GEARS,Boolean.TRUE);
-		        
-		        BrowserField browserField = new BrowserField(myBrowserFieldConfig);
-		        campo.add(browserField);
-		        browserField.displayContent(url, "http://localhost");*/
 				
 
 		        
 		    		   lista.addElement(new ListStyleButtonField( null, vectorTitulo.elementAt(j).toString(), flecha, DrawStyle.ELLIPSIS){
-		    	            //define width
+		    	           
+							//define width
 		    	            public int getPreferredWidth()
 		    	            {
 		    	                return Display.getWidth();
@@ -354,7 +440,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 		    	            //define height
 		    	            public int getPreferredHeight()
 		    	            {
-		    	                return 70;
+		    	                return tLista;
 		    	            }
 		    	            public void layout( int maxWidth, int maxHeight )
 		    	            {
@@ -377,8 +463,33 @@ public class Promocion extends Metodos implements FieldChangeListener
 			sqliteDB.close(); 
         }catch (Exception e){
         	Dialog.alert("error al entrar a la base "+e.getMessage());
+        	cambiar();
         }
     	
+	}
+	public void actualizarDatos(){
+		String getTipo1 = Autenticacion.getConnectionString()[1];
+		
+		if(getTipo1.equals("wifi")){
+			Status.show("Actualizando Datos..." );
+			eliminarDatos();
+			openScreen(new Promocion(0));
+			
+		}else if(getTipo1.equals("BIBS")){
+			Status.show("Parece que está en una conexion lenta, puede tardar un momento");
+			eliminarDatos();
+			openScreen(new Promocion(0));
+			
+		}/*else if(getTipo1.equals("error")){
+			//Status.show("Error de red",1000 );
+			cambiar();
+		}*/
+		else{
+			//Status.show("Error de red",1000 );
+			cambiar();
+		}
+		
+		
 	}
 	public void fieldChanged(Field field, int arg1) {
 		 //TODO Auto-generated method stub

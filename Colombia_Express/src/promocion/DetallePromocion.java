@@ -38,7 +38,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 	Bitmap imagen1;
 	URI uri;
 	String idOfertas;
-	LabelField lblDescripcion;
+	RichTextField lblDescripcion;
 	LabelField lblFecha;
 	LabelField lblCantidad;
 	LabelField lblOferta;
@@ -134,8 +134,8 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		{
 			imgWeb = "<img width='384' height='252'  src='"+Imagen+"'>";
 			
-			AnchoImagen = 480;	
-			AltoImagen = 59;
+			AnchoImagen = 360;	
+			AltoImagen = 44;
 			
 			izquierda = 40;
 			derecha = 40;
@@ -153,13 +153,15 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		}	
 		if (Display.getWidth() == 640)
 		{
+			AnchoImagen = 480;	
+			AltoImagen = 58;
 			imgWeb = "<img width='524' height='343'  src='"+Imagen+"'>";
 			izquierda = 50;
 			derecha = 50;
 			
 			lblIzquierda = 45;
 			
-			tFuente = 27;
+			tFuente = 30;
 			
 			facebook0 = Bitmap.getBitmapResource("facebook_540.png");
 			facebook1 = Bitmap.getBitmapResource("facebook_540.png");
@@ -196,7 +198,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 
 		BrowserFieldConfig myBrowserFieldConfig = new BrowserFieldConfig();
         myBrowserFieldConfig.setProperty(BrowserFieldConfig.NAVIGATION_MODE,BrowserFieldConfig.NAVIGATION_MODE_NONE);
-        //myBrowserFieldConfig.setProperty(BrowserFieldConfig.ENABLE_COOKIES, Boolean.TRUE);
+        myBrowserFieldConfig.setProperty(BrowserFieldConfig.ENABLE_COOKIES, Boolean.TRUE);
         BrowserField browserField = new BrowserField(myBrowserFieldConfig);
         browserField.setMargin(10, derecha, 0, izquierda);
         add(browserField);
@@ -241,7 +243,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 				dContent.setMargin(0, lblIzquierda, 5, lblIzquierda);
 				lblNombre		= new LabelField(Nombre,Field.FIELD_HCENTER);
 				lblNombre.setMargin(5, 0, 5, 0);
-				lblDescripcion 	= new LabelField(Descripcion){
+				lblDescripcion 	= new RichTextField(Descripcion){
 			        public void paint(Graphics g){      
 			            g.setColor(Color.GRAY);
 			            super.paint(g);
@@ -289,7 +291,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 	        
 	        UiEngineInstance engine = Ui.getUiEngineInstance();
 	        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
-	        openScreen(new Promocion());
+	        openScreen(new Promocion(1));
 		return true;
 	}
 
