@@ -19,7 +19,6 @@ import net.rim.device.api.ui.UiEngineInstance;
 import net.rim.device.api.ui.XYEdges;
 import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.LabelField;
-import net.rim.device.api.ui.component.Menu;
 import net.rim.device.api.ui.component.RichTextField;
 import net.rim.device.api.ui.component.SeparatorField;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
@@ -32,21 +31,16 @@ import estilos.Metodos;
 
 public class DetallePromocion extends Metodos implements FieldChangeListener {
 	
-	Config path 	= new Config();
-	Config statement= new Config();
-	private Bitmap bitmapImage;
+
 	Bitmap imagen1;
 	URI uri;
 	String idOfertas;
 	RichTextField lblDescripcion;
-	LabelField lblFecha;
 	LabelField lblCantidad;
 	LabelField lblOferta;
 	LabelField lblNombre;
-	private RichTextField lblPoferta;
-	private RichTextField lblPregular;
-	private Font fBold,fLite;
-	private BitmapButtonField btnHome;
+	RichTextField lblPregular;
+	Font fBold,fLite;
 	FileConnection fconn;
 	private BitmapButtonField btnUpdate;
 	int AnchoImagen = 640;
@@ -55,42 +49,39 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 	int imgAlto = 220;
 	int imgAncho = 364;
 	int lblIzquierda = 50;
-	String Nombre, idOferta, Imagen, Descripcion, Oferta, Regular;
+	String Nombre, Descripcion, Imagen, Regular;
 	String imgWeb;
 	int izquierda = 60;
 	int derecha = 60;
-	private int ancho=250;
-	private int alto=49;
+	int ancho;
+	int alto;
 	
 	int btn_Alto = 56;
 	int btn_Ancho = 290;
+
+	Bitmap headImage;
 	
-	Bitmap facebook0;
-	Bitmap facebook1;
-	Bitmap twitter0;
-	Bitmap twitter1;
-	
-	
-	public DetallePromocion(String titulo, String idOferta, String imagen,String descripcion,String oferta,String regular){
+	int compensacion = 0;
+	public DetallePromocion(String titulo,String descripcion, String imagen,String precio){
 		Nombre 		= titulo;
 		Imagen 		= imagen;
 		Descripcion = descripcion;
-		Oferta 		= oferta;
-		Regular 	= regular;
+		Regular 	= precio;
 		
 		//Dialog.alert(imagen);
 		Bitmap bitmapImg = Bitmap.getBitmapResource("gray.jpg");
 		//getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
-		getMainManager().setBackground(BackgroundFactory.createSolidBackground(0xcecdcd));
+		getMainManager().setBackground(BackgroundFactory.createLinearGradientBackground(0xe9c32e, 0xe9c32e,0xebd155,0xebd155));
 		//Barra Titulo
 		
 		if (Display.getWidth() == 320)
 		{
-			imgWeb = "<img width='274' height='180'  src='"+Imagen+"'>";
+			headImage = Bitmap.getBitmapResource("titulo_320.png");
+			imgWeb = "<img width='274' height='180'  src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			
 			AnchoImagen = 320;	
 			AltoImagen = 39;
-			tFuente = 17;
+			tFuente = 18;
 			
 			izquierda = 15;
 			derecha = 15;
@@ -99,18 +90,14 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 			
 			alto = 49;
 			ancho = 250;
-			
-			facebook0 = Bitmap.getBitmapResource("facebook_290.png");
-			facebook1 = Bitmap.getBitmapResource("facebook_290.png");
-			
-			twitter0 = Bitmap.getBitmapResource("twitter_290.png");
-			twitter1 = Bitmap.getBitmapResource("twitter_290.png");
+			compensacion = 30;
 			
 		}
 		
 		if (Display.getWidth() == 360)
 		{
-			imgWeb = "<img width='294' height='193'  src='"+Imagen+"'>";
+			headImage = Bitmap.getBitmapResource("titulo_360.png");
+			imgWeb = "<img width='294' height='193' src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			
 			AnchoImagen = 360;	
 			AltoImagen = 44;
@@ -118,24 +105,21 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 			izquierda = 25;
 			derecha = 25;
 			
-			tFuente = 17;
+			tFuente = 19;
 			lblIzquierda = 20;
 			
 			alto = 59;
 			ancho = 310;
 			
-			facebook0 = Bitmap.getBitmapResource("facebook_310.png");
-			facebook1 = Bitmap.getBitmapResource("facebook_310.png");
-			
-			twitter0 = Bitmap.getBitmapResource("twitter_310.png");
-			twitter1 = Bitmap.getBitmapResource("twitter_310.png");
 		}
 		if (Display.getWidth() == 480)
 		{
-			imgWeb = "<img width='384' height='252'  src='"+Imagen+"'>";
-			
+			imgWeb = "<img width='384' height='252'  src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			headImage = Bitmap.getBitmapResource("titulo_480.png");
 			AnchoImagen = 360;	
 			AltoImagen = 44;
+			
+
 			
 			izquierda = 40;
 			derecha = 40;
@@ -144,32 +128,21 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 			
 			lblIzquierda = 35;
 			
-			facebook0 = Bitmap.getBitmapResource("facebook_350.png");
-			facebook1 = Bitmap.getBitmapResource("facebook_350.png");
-			
-			twitter0 = Bitmap.getBitmapResource("twitter_350.png");
-			twitter1 = Bitmap.getBitmapResource("twitter_350.png");
 			
 		}	
 		if (Display.getWidth() == 640)
 		{
+			headImage = Bitmap.getBitmapResource("titulo_640.png");
 			AnchoImagen = 480;	
 			AltoImagen = 58;
-			imgWeb = "<img width='524' height='343'  src='"+Imagen+"'>";
+			imgWeb = "<img width='524' height='343'  src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			izquierda = 50;
 			derecha = 50;
 			
 			lblIzquierda = 45;
 			
-			tFuente = 30;
+			tFuente = 35;
 			
-			facebook0 = Bitmap.getBitmapResource("facebook_540.png");
-			facebook1 = Bitmap.getBitmapResource("facebook_540.png");
-			
-			twitter0 = Bitmap.getBitmapResource("twitter_540.png");
-			twitter1 = Bitmap.getBitmapResource("twitter_540.png");
-			
-			//Dialog.alert(imgWeb);
 			
 		}
 		 
@@ -180,14 +153,14 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		 	fBold = ffFont.getFont(Font.BOLD, tFuente );
 		 	
 		 	FontFamily ffFont1 = FontFamily.forName("Arial");
-		 	fLite = ffFont1.getFont(Font.ANTIALIAS_NONE, tFuente - 2);
+		 	fLite = ffFont1.getFont(Font.ANTIALIAS_NONE, tFuente - 4);
 		 	
 		 }catch (ClassNotFoundException e){
 		 	   System.out.println(e.getMessage());
 		 }
 		
-		Bitmap imagen1 	=  resizeBitmap(Bitmap.getBitmapResource("headImage.png"), AnchoImagen, AltoImagen);
-		BitmapField bitmapImg1 = new BitmapField( imagen1, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
+		//Bitmap imagen1 	=  resizeBitmap(Bitmap.getBitmapResource("headImage.png"), AnchoImagen, AltoImagen);
+		BitmapField bitmapImg1 = new BitmapField( headImage, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
 		HorizontalFieldManager head = new HorizontalFieldManager(Field.USE_ALL_WIDTH | Field.FIELD_HCENTER | Field.FIELD_VCENTER);
 		head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.SILVER,Color.SILVER));
 		head.add(bitmapImg1);
@@ -205,71 +178,68 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
         //Dialog.alert(imgWeb);
         browserField.displayContent(imgWeb, "http://localhost");
 				
-				Bitmap bordes = Bitmap.getBitmapResource("rounded-border1.png");
+				Bitmap bordes = Bitmap.getBitmapResource("bg_shadowAnaranjado.png");
 				
 				HorizontalFieldManager pContent = new HorizontalFieldManager(Field.USE_ALL_WIDTH | HorizontalFieldManager.FIELD_HCENTER);
-				pContent.setBorder(BorderFactory.createBitmapBorder(new XYEdges(15,15,15,15), bordes));
+				pContent.setBorder(BorderFactory.createBitmapBorder(new XYEdges(25,25,25,25), bordes));
 				pContent.setMargin(5,lblIzquierda , 0, lblIzquierda);
 				VerticalFieldManager pLabel = new VerticalFieldManager();
 				VerticalFieldManager Precio = new VerticalFieldManager(Field.FIELD_RIGHT);
 				
 				
-				LabelField lblRegular = new LabelField("Precio Regular:");
-				lblRegular.setMargin(20, 10, 10, lblIzquierda+(lblIzquierda/2));
+				LabelField lblRegular = new LabelField("Precio Regular:"){
+			        public void paint(Graphics g){      
+			            g.setColor(Color.WHITE);
+			            super.paint(g);
+			        }};
+				lblRegular.setMargin(15, 10, 10, lblIzquierda+(lblIzquierda/3));
 				lblRegular.setFont(fBold);
 				
-				LabelField lblOferta = new LabelField("Precio Oferta: ");
-				lblOferta.setMargin(20, 10, 10, lblIzquierda+(lblIzquierda/2));
-				lblOferta.setFont(fBold);
+
 				
-				lblPoferta 		= new RichTextField("$ "+Oferta.toUpperCase(),Field.FIELD_RIGHT);
-				lblPoferta.setMargin(20, 10, 20, lblIzquierda+lblIzquierda);
-				lblOferta.setFont(fLite);
+				lblPregular		= new RichTextField("$ "+Regular.toUpperCase(),Field.FIELD_RIGHT){
+			        public void paint(Graphics g){      
+			            g.setColor(Color.WHITE);
+			            super.paint(g);
+			        }};
+				lblPregular.setMargin(15, 10, 10, lblIzquierda);
 				
-				lblPregular		= new RichTextField("$ "+Regular.toUpperCase(),Field.FIELD_RIGHT);
-				lblPregular.setMargin(20, 10, 10, lblIzquierda+lblIzquierda);
-				lblOferta.setFont(fLite);
 				
 				pLabel.add(lblRegular);
-				pLabel.add(lblOferta);
 				Precio.add(lblPregular);
-				Precio.add(lblPoferta);
 				pContent.add(pLabel);
 				pContent.add(Precio);
 				add(pContent);
 
 				VerticalFieldManager dContent = new VerticalFieldManager(Field.FIELD_HCENTER | Field.USE_ALL_WIDTH);
-				dContent.setBorder(BorderFactory.createBitmapBorder(new XYEdges(15,15,15,15), bordes));
-				dContent.setMargin(0, lblIzquierda, 5, lblIzquierda);
-				lblNombre		= new LabelField(Nombre,Field.FIELD_HCENTER);
+				dContent.setBorder(BorderFactory.createBitmapBorder(new XYEdges(25,25,25,25), bordes));
+				dContent.setMargin(0, lblIzquierda, compensacion + 5, lblIzquierda);
+				lblNombre		= new LabelField(Nombre,Field.FIELD_HCENTER){
+			        public void paint(Graphics g){      
+			            g.setColor(Color.WHITE);
+			            super.paint(g);
+			        }};
 				lblNombre.setMargin(5, 0, 5, 0);
 				lblDescripcion 	= new RichTextField(Descripcion){
 			        public void paint(Graphics g){      
-			            g.setColor(Color.GRAY);
+			            g.setColor(Color.WHITE);
 			            super.paint(g);
 			        }};
 			    lblDescripcion.setMargin(5, 0, 5, 0);
 				lblDescripcion.setFont(fLite);
 				dContent.add(lblNombre);
 				lblNombre.setFont(fBold);
-				dContent.add(new SeparatorField());
+				SeparatorField separator = new SeparatorField(){
+			        public void paint(Graphics g){      
+			            g.setColor(Color.WHITE);
+			            super.paint(g);
+			        }};
+				dContent.add(separator);
 				dContent.add(lblDescripcion);
 				
 				add(dContent);
 				
 				
-				VerticalFieldManager btnContent = new VerticalFieldManager(Field.FIELD_HCENTER);
-				
-				BitmapButtonField btnFacebook = new BitmapButtonField(facebook0, facebook1);
-				btnFacebook.setChangeListener(this);
-				btnFacebook.setMargin(5, 15, 5, 15);
-				btnContent.add(btnFacebook);
-				
-				BitmapButtonField btnTwitter = new BitmapButtonField(twitter0, twitter1);
-				btnTwitter.setChangeListener(this);
-				btnTwitter.setMargin(10, 15, 60, 15);
-				btnContent.add(btnTwitter);
-				//add(btnContent);
 				
 			}
 	

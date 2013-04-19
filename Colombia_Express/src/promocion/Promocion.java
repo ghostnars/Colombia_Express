@@ -1,6 +1,5 @@
 package promocion;
 
-import java.rmi.RemoteException;
 import java.util.Vector;
 
 import javax.microedition.io.file.FileConnection;
@@ -28,7 +27,6 @@ import net.rim.device.api.ui.UiApplication;
 import net.rim.device.api.ui.UiEngineInstance;
 import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.Dialog;
-import net.rim.device.api.ui.component.LabelField;
 import net.rim.device.api.ui.component.Status;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
@@ -52,15 +50,15 @@ public class Promocion extends Metodos implements FieldChangeListener
 	
 	String tipoConexion = Autenticacion.getConnectionString()[0];
 	String getTipo = Autenticacion.getConnectionString()[1];	
-	String ServiceUrl = "http://www.buzzcoapp.com/admin2/webServices/servicioWeb_promo.php"+tipoConexion; 
-	String ServiceNamespace = "http://i-moves.com/demos/promosApp/webServices";
-	String methodName = "getOfertas";
-	String idAfiliado = "32";
+	String ServiceUrl = "http://www.buzzcoapp.com/admin2/webServices/servicioWeb_ColombiaExpress.php"+tipoConexion; 
+	String ServiceNamespace = "http://www.buzzcoApp.com/admin2/webServices";
+	String methodName = "getProductos";
+	String idAfiliado = "33";
 	int y,x,z;
 	int ax,bx;
 	
 	String id;
-	String precioOfer="";
+	String precio="";
 	String precioReg="";
 	String fecha="";
 	String nombre;
@@ -74,8 +72,8 @@ public class Promocion extends Metodos implements FieldChangeListener
 	Vector vectorTitulo 	= new Vector();
 	Vector vectorImagen 	= new Vector();
 	Vector vectorDesc 		= new Vector();
-	Vector vectorPoferta	= new Vector();
-	Vector vectorPregular 	= new Vector();
+
+	Vector vectorPrecio 	= new Vector();
 	
 	String res = "";
 	Config path 		= new Config();
@@ -95,6 +93,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 	int AnchoImagen = 640;
 	int AltoImagen = 79;
 	int flag = 0;
+	Bitmap headImage;
 	 private int tLista =60;
 	Bitmap flecha = Bitmap.getBitmapResource("flecha.png");
 	public Promocion(int bandera)
@@ -102,17 +101,19 @@ public class Promocion extends Metodos implements FieldChangeListener
 		flag = bandera;
 		Bitmap bitmapImg = Bitmap.getBitmapResource("gray.jpg");	
 		//getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
-		getMainManager().setBackground(BackgroundFactory.createLinearGradientBackground(Color.SILVER, Color.SILVER,Color.SILVER,Color.SILVER));
+		getMainManager().setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGE, 0xebd359,0xebd359,Color.ORANGE));
 		
 		//Dialog.alert(tipoConexion);
 		if (Display.getWidth() == 320)
 		{
+			headImage = Bitmap.getBitmapResource("titulo_320.png");
 			AnchoImagen = 320;	
 			AltoImagen = 39;
 			tLista = 50;
 		}
 		if (Display.getWidth() == 360)
 		{
+			headImage = Bitmap.getBitmapResource("titulo_360.png");
 			iconoWeb = 60;
 			letraLength = 29;
 			AnchoImagen = 360;	
@@ -121,6 +122,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 		}
 		if (Display.getWidth() == 480)
 		{
+			headImage = Bitmap.getBitmapResource("titulo_480.png");
 			letraLength = 35;
 			AnchoImagen = 360;	
 			AltoImagen = 44;
@@ -128,55 +130,25 @@ public class Promocion extends Metodos implements FieldChangeListener
 		}	
 		if (Display.getWidth() == 640)
 		{
-			tLista = 100;
+			headImage = Bitmap.getBitmapResource("titulo_640.png");
+			tLista = 110;
 			AnchoImagen = 480;	
 			AltoImagen = 58;
 		}
 		 
-
-		//Barra Titulo
-				Bitmap titleImage = Bitmap.getBitmapResource("barra.png");	
-				
-				/*HorizontalFieldManager fmtitleBar 	= new HorizontalFieldManager(Field.USE_ALL_WIDTH);
-				HorizontalFieldManager fmHome 		= new HorizontalFieldManager();
-				fmHome.setMargin(0, 200, 0, 0);
-				HorizontalFieldManager fmTitulo 	= new HorizontalFieldManager(Field.FIELD_VCENTER);
-				fmTitulo.setMargin(0, 200, 0, 0);
-				HorizontalFieldManager fmActualizar = new HorizontalFieldManager();
-				
-				btnHome = new BitmapButtonField(Bitmap.getBitmapResource("home1.png"), Bitmap.getBitmapResource("home1.png"));
-				btnHome.setChangeListener(this);
-
-				btnUpdate = new BitmapButtonField(Bitmap.getBitmapResource("sync.png"), Bitmap.getBitmapResource("sync.png"));
-				btnUpdate.setChangeListener(this);
-				
-				LabelField Titulo = new LabelField("OFERTAS");
-			  
-				
-				fmHome.add(btnHome);
-				fmTitulo.add(Titulo);
-				fmActualizar.add(btnUpdate);
-				
-				fmtitleBar.add(fmHome);
-				fmtitleBar.add(fmTitulo);
-				fmtitleBar.add(fmActualizar);
-					
-				fmtitleBar.setBackground(BackgroundFactory.createBitmapBackground(titleImage));
-				setTitle(fmtitleBar);*/
 				
 				
-				Bitmap imagen 	=  resizeBitmap(Bitmap.getBitmapResource("headImage.png"), AnchoImagen, AltoImagen);
-				BitmapField bitmapImg1 = new BitmapField( imagen, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
+				BitmapField bitmapImg1 = new BitmapField( headImage, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
 				HorizontalFieldManager head = new HorizontalFieldManager(Field.USE_ALL_WIDTH | Field.FIELD_HCENTER | Field.FIELD_VCENTER);
-				head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.SILVER,Color.SILVER));
+				head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.GOLD, Color.GOLD,Color.GOLD,Color.GOLD));
 				head.add(bitmapImg1);
 				//head.setMargin(0, 0, -5, 0);
 				setBanner(head);
 				
-			Status.show(getTipo, 2000);
+			//Status.show(getTipo, 2000);
 				validarDatos();
-			
-				MenuItem _viewItem1 = new MenuItem(" Actualizar lista", 110, 0){
+				//descargarDatos();
+				MenuItem _viewItem1 = new MenuItem(" Actualizar lista", 110, 1){
 					
 					public void run(){
 						
@@ -265,11 +237,12 @@ public class Promocion extends Metodos implements FieldChangeListener
 					descargarDatos();
 					
 				}else if(getTipo.equals("BIBS")){
+					
 					Status.show("Parece que está en una conexion lenta, puede tardar un momento");
 					descargarDatos();
 					
 				}else if(getTipo.equals("error")){
-					Status.show("Error de red",1000 );
+					//Status.show("Error de red",1000 );
 					cambiar();
 				}
 				
@@ -307,7 +280,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 			}
 			
 		}catch(Exception e){
-			add(new LabelField("error al validar si hay datos: "+e.getMessage()));
+			//add(new LabelField("error al validar si hay datos: "+e.getMessage()));
 			validarDatos();
 		
 		}
@@ -330,13 +303,15 @@ public class Promocion extends Metodos implements FieldChangeListener
 	        
 	        ht.call(ServiceUrl + "/" + methodName, envelope);         
 	        array = (Vector) envelope.getResponse();
-	       if(!(array.size()==0)){
+	        if(!(array.size()==0)){
 	        	//Dialog.alert("tamaño "+a.size());
 	        	for(int i=0;i<array.size();i++){
 	        		
 	        		res = array.elementAt(i).toString();
+	        		
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					id=res.substring(y+1, z);
+					
 					
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
@@ -344,43 +319,36 @@ public class Promocion extends Metodos implements FieldChangeListener
 					
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
-					imagen=res.substring(y+1, z);
-					
-					res=res.substring(z+1, res.length());
-					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					descripcion=res.substring(y+1, z);
 					
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
-					fecha=res.substring(y+1, z);
+					imagen=res.substring(y+1, z);
 					
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
-					precioOfer=res.substring(y+1, z);
+					precio=res.substring(y+1, z);
 					
-					res=res.substring(z+1, res.length());
-					y=res.indexOf("=");z=0;z=res.indexOf(";");
-					precioReg=res.substring(y+1, z);
 					
 					res=res.substring(z+1, res.length());
 					
 					try
 					{
-						URI uri1 = URI.create(path.Path());
+						URI uri3 = URI.create(path.Path());
 						//Dialog.alert(""+path.Path());
-						Database sqliteDB1 = DatabaseFactory.open(uri1); 
-						//Dialog.alert(statement.InsertOferta()+"'"+id+"','"+idAfiliado+"','"+nombre+"','"+imagen+"','"+descripcion+"','"+fecha+"','"+precioOfer+"','"+precioReg+"');");
-						Statement in = sqliteDB1.createStatement(statement.InsertOferta()+"'"+id+"','"+idAfiliado+"','"+nombre+"','"+imagen+"','"+descripcion+"','"+fecha+"','"+precioOfer+"','"+precioReg+"');");
+						Database sqliteDB3 = DatabaseFactory.open(uri3); 
+						//Dialog.alert(statement.InsertOferta()+"'"+idAfiliado+"','"+id+"','"+nombre+"','"+descripcion+"','"+imagen+"','"+precio+"');");
+						Statement in = sqliteDB3.createStatement(statement.InsertOferta()+"'"+idAfiliado+"','"+id+"','"+nombre+"','"+descripcion+"','"+imagen+"','"+precio+"');");
 						in.prepare();
 						in.execute();
 						in.close();
-						sqliteDB1.close();		
+						sqliteDB3.close();		
 						
 					}
 					catch(Exception e)
 					{	
-						Dialog.alert(e.toString()+"error en el insert");
-						cambiar();
+					Dialog.alert(e.getMessage()+"error en el insert");
+						//cambiar();
 					}
 					/*id = "";
 					nombre ="";
@@ -414,18 +382,17 @@ public class Promocion extends Metodos implements FieldChangeListener
             int j = 0;
             while(sc.next()){
                 rc = sc.getRow(); 
-                vectorId.addElement(rc.getString(0));
+                vectorId.addElement(rc.getString(1));
                 vectorTitulo.addElement(rc.getString(2));
-				vectorImagen.addElement(rc.getString(3));
-                vectorDesc.addElement(rc.getString(4));
-                vectorPoferta.addElement(rc.getString(6));
-				vectorPregular.addElement(rc.getString(7));
+                vectorDesc.addElement(rc.getString(3));
+				vectorImagen.addElement(rc.getString(4));
+				vectorPrecio.addElement(rc.getString(5));
 				
 				
 				
 				VerticalFieldManager vfmLabel = new VerticalFieldManager(Field.FIELD_VCENTER);
-				vfmLabel.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.WHITE,Color.WHITE));
-				vfmLabel.setMargin(2, 2, 2, 2);
+				vfmLabel.setBackground(BackgroundFactory.createLinearGradientBackground(0xebcc41, 0xebcc41,0xebd359,0xebd359));
+				vfmLabel.setMargin(3, 3, 3, 3);
 				
 				
 
@@ -462,7 +429,7 @@ public class Promocion extends Metodos implements FieldChangeListener
             sc.close();
 			sqliteDB.close(); 
         }catch (Exception e){
-        	Dialog.alert("error al entrar a la base "+e.getMessage());
+        	//Dialog.alert("error al entrar a la base "+e.getMessage());
         	cambiar();
         }
     	
@@ -471,12 +438,12 @@ public class Promocion extends Metodos implements FieldChangeListener
 		String getTipo1 = Autenticacion.getConnectionString()[1];
 		
 		if(getTipo1.equals("wifi")){
-			Status.show("Actualizando Datos..." );
+			//Status.show("Actualizando Datos..." );
 			eliminarDatos();
 			openScreen(new Promocion(0));
 			
 		}else if(getTipo1.equals("BIBS")){
-			Status.show("Parece que está en una conexion lenta, puede tardar un momento");
+			//Status.show("Parece que está en una conexion lenta, puede tardar un momento");
 			eliminarDatos();
 			openScreen(new Promocion(0));
 			
@@ -501,16 +468,12 @@ public class Promocion extends Metodos implements FieldChangeListener
 				transition.setIntAttribute(TransitionContext.ATTR_STYLE, TransitionContext.STYLE_PUSH);
 				UiEngineInstance engine = Ui.getUiEngineInstance();
 				engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
-				
-				//Dialog.alert(vectorId.elementAt(j).toString());
 
 				openScreen(new DetallePromocion(
 						vectorTitulo.elementAt(j).toString(),
-						vectorId.elementAt(j).toString(),
+						vectorDesc.elementAt(j).toString(),					
 						vectorImagen.elementAt(j).toString(),
-						vectorDesc.elementAt(j).toString(),
-						vectorPoferta.elementAt(j).toString(),
-						vectorPregular.elementAt(j).toString()
+						vectorPrecio.elementAt(j).toString()
 						));
 			}
 			

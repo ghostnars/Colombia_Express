@@ -3,6 +3,7 @@ package mypackage;
 
 import net.rim.blackberry.api.invoke.Invoke;
 import net.rim.blackberry.api.invoke.MessageArguments;
+import net.rim.blackberry.api.invoke.PhoneArguments;
 import net.rim.blackberry.api.mail.Address;
 import net.rim.blackberry.api.mail.Message;
 import net.rim.device.api.system.Bitmap;
@@ -14,7 +15,7 @@ import net.rim.device.api.ui.TransitionContext;
 import net.rim.device.api.ui.Ui;
 import net.rim.device.api.ui.UiEngineInstance;
 import net.rim.device.api.ui.component.BitmapField;
-import net.rim.device.api.ui.component.Status;
+import net.rim.device.api.ui.component.Dialog;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
@@ -24,7 +25,7 @@ import estilos.Metodos;
 
 public final class Menu extends Metodos implements FieldChangeListener
 {
-	private BitmapButtonField btn1,btn2,btn3;
+	private BitmapButtonField btn1,btn2,btn3,btn4;
 	
 
 	int tIcono = 160;
@@ -40,14 +41,37 @@ public final class Menu extends Metodos implements FieldChangeListener
 	Bitmap Perfil1;
 	Bitmap Promocion;
 	Bitmap Promocion1;
-	
+	Bitmap Llamar;
+	Bitmap Llamar1;
+
+	Bitmap headImage;
+	Bitmap bitmapImg;
 	
 	public Menu()
 	    { 
-		
-		Bitmap bitmapImg = Bitmap.getBitmapResource("gray.jpg");	
-		//getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
-		getMainManager().setBackground(BackgroundFactory.createSolidBackground(0xaaaaaa));
+		if (Display.getWidth() == 320)	
+		{
+			bitmapImg = Bitmap.getBitmapResource("fondo_320.png");
+			
+		}
+		else if (Display.getWidth() == 360)	
+		{
+			bitmapImg = Bitmap.getBitmapResource("fondo_360.png");
+			
+		}
+		else if (Display.getWidth() == 480)	
+		{
+			bitmapImg = Bitmap.getBitmapResource("fondo_480.png");
+			
+		}
+		else if (Display.getWidth() == 640)	
+		{
+
+			bitmapImg = Bitmap.getBitmapResource("fondo_640.png");
+		}
+		//getMainManager().setBackground(BackgroundFactory.createSolidBackground(0xaaaaaa));
+			
+		getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
 		
 		
 		Pedidos 	=  Bitmap.getBitmapResource("pedidos.png");
@@ -57,11 +81,16 @@ public final class Menu extends Metodos implements FieldChangeListener
 		Promocion	=  Bitmap.getBitmapResource("promo.png");
 		Promocion1 	=  Bitmap.getBitmapResource("promo1.png");
 		
+		
+		
+		
+		
+		
 		if (Display.getWidth() == 320)
 		{
-			tIcono = 85;
-			distancia = 0;
-			distanciaL = 0;
+			headImage = Bitmap.getBitmapResource("titulo_320.png");
+			distancia = 5;
+			distanciaL = 5;
 			AnchoImagen = 320;	
 			AltoImagen = 39;
 			compensacion = 0;
@@ -72,30 +101,50 @@ public final class Menu extends Metodos implements FieldChangeListener
 			Perfil1	 	=  Bitmap.getBitmapResource("1perfil1.png");
 			Promocion	=  Bitmap.getBitmapResource("1promo.png");
 			Promocion1 	=  Bitmap.getBitmapResource("1promo1.png");
-			
+			Llamar		=  Bitmap.getBitmapResource("1llamar.png");
+			Llamar1 	=  Bitmap.getBitmapResource("1llamar1.png");
 		}
 		if (Display.getWidth() == 360)
 		{
-			compensacion = 50;
-			tIcono = 110;
-			distancia = 0;
-			distanciaL = 0;
+			headImage = Bitmap.getBitmapResource("titulo_360.png");
+			distancia = 7;
+			distanciaL = 7;
 			AnchoImagen = 360;	
 			AltoImagen = 44;
+			
+			Pedidos 	=  Bitmap.getBitmapResource("2pedidos.png");
+			Pedidos1 	=  Bitmap.getBitmapResource("2pedidos1.png");
+			Perfil 		=  Bitmap.getBitmapResource("2perfil.png");
+			Perfil1	 	=  Bitmap.getBitmapResource("2perfil1.png");
+			Promocion	=  Bitmap.getBitmapResource("2promo.png");
+			Promocion1 	=  Bitmap.getBitmapResource("2promo1.png");
+			Llamar		=  Bitmap.getBitmapResource("2llamar.png");
+			Llamar1 	=  Bitmap.getBitmapResource("2llamar1.png");
 			
 		}
 		if (Display.getWidth() == 480)
 		{
-			tIcono = 120;
+			headImage = Bitmap.getBitmapResource("titulo_480.png");
 			AnchoImagen = 360;	
 			AltoImagen = 44;
-			distancia = 0;
-			compensacion = 5;
+			distancia = 7;
+			distanciaL = 7;
+			
+			Pedidos 	=  Bitmap.getBitmapResource("pedidos.png");
+			Pedidos1 	=  Bitmap.getBitmapResource("pedidos1.png");
+			Perfil 		=  Bitmap.getBitmapResource("perfil.png");
+			Perfil1	 	=  Bitmap.getBitmapResource("perfil1.png");
+			Promocion	=  Bitmap.getBitmapResource("promo.png");
+			Promocion1 	=  Bitmap.getBitmapResource("promo1.png");
+			Llamar		=  Bitmap.getBitmapResource("llamar.png");
+			Llamar1 	=  Bitmap.getBitmapResource("llamar1.png");
+						
 		}	
 		if (Display.getWidth() == 640)
 		{
-			compensacion = 10;
-			
+			headImage = Bitmap.getBitmapResource("titulo_640.png");
+			distancia = 10;
+			distanciaL = 10;
 			AnchoImagen = 480;	
 			AltoImagen = 58;
 			
@@ -105,7 +154,8 @@ public final class Menu extends Metodos implements FieldChangeListener
 			Perfil1	 	=  Bitmap.getBitmapResource("0perfil1.png");
 			Promocion	=  Bitmap.getBitmapResource("0promo.png");
 			Promocion1 	=  Bitmap.getBitmapResource("0promo1.png");
-			
+			Llamar		=  Bitmap.getBitmapResource("0llamar.png");
+			Llamar1 	=  Bitmap.getBitmapResource("0llamar1.png");
 			
 		}
 		if (Display.getWidth() == 480 && Display.getHeight() == 640)
@@ -120,23 +170,16 @@ public final class Menu extends Metodos implements FieldChangeListener
 		{	
 			//compensacion = 30;
 		}
+		
+		
 		//add(new LabelField(Display.getWidth() +" - "+  Display.getHeight()));
-		Bitmap imagen 	=  resizeBitmap(Bitmap.getBitmapResource("headImage.png"), AnchoImagen, AltoImagen);
-		BitmapField bitmapImg1 = new BitmapField( imagen, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
+		//Bitmap imagen 	=  resizeBitmap(Bitmap.getBitmapResource("headImage.png"), AnchoImagen, AltoImagen);
+		BitmapField bitmapImg1 = new BitmapField( headImage, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
 		HorizontalFieldManager head = new HorizontalFieldManager(Field.USE_ALL_WIDTH | Field.FIELD_HCENTER | Field.FIELD_VCENTER);
 		head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.SILVER,Color.SILVER));
 		head.add(bitmapImg1);
 		head.setMargin(0, 0, 0, 0);
 		add(head);
-		
-		/*Bitmap Pedidos 	=  resizeBitmap(Bitmap.getBitmapResource("pedidos.png"), tIcono, tIcono);
-		Bitmap Pedidos1 	=  resizeBitmap(Bitmap.getBitmapResource("pedidos1.png"), tIcono, tIcono);
-		Bitmap Mapa 		=  resizeBitmap(Bitmap.getBitmapResource("mapa.png"), tIcono, tIcono);
-		Bitmap Mapa1 		=  resizeBitmap(Bitmap.getBitmapResource("mapa1.png"), tIcono, tIcono);
-		Bitmap Perfil 		=  resizeBitmap(Bitmap.getBitmapResource("perfil.png"), tIcono, tIcono);
-		Bitmap Perfil1	 	=  resizeBitmap(Bitmap.getBitmapResource("perfil1.png"), tIcono, tIcono);
-		Bitmap Promocion	=  resizeBitmap(Bitmap.getBitmapResource("promo.png"), tIcono, tIcono);
-		Bitmap Promocion1 	=  resizeBitmap(Bitmap.getBitmapResource("promo1.png"), tIcono, tIcono);*/
 		
 		
 		//Bitmap bordes = Bitmap.getBitmapResource("rounded-border1.png");
@@ -144,69 +187,54 @@ public final class Menu extends Metodos implements FieldChangeListener
 		//content.setBorder(BorderFactory.createBitmapBorder(new XYEdges(15,15,15,15), bordes));
 		
 		HorizontalFieldManager uno = new HorizontalFieldManager(Field.FIELD_HCENTER |Field.FIELD_VCENTER);
+		uno.setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGE, Color.ORANGE,Color.ORANGE,Color.ORANGE));
 		
 		btn1 = new BitmapButtonField(Promocion, Promocion1);
 		btn1.setChangeListener(this);
-		btn1.setMargin(distancia+compensacion, distanciaL, distancia, distanciaL);
+		btn1.setMargin(distancia, distanciaL, distancia, distanciaL);
 		
 		btn2 = new BitmapButtonField(Perfil,Perfil1);
 		btn2.setChangeListener(this);
-		btn2.setMargin(distancia+compensacion, distanciaL, distancia, distanciaL);
+		btn2.setMargin(distancia, distanciaL, distancia, distanciaL);
 	
 		HorizontalFieldManager dos = new HorizontalFieldManager(Field.FIELD_HCENTER |Field.FIELD_VCENTER);
-		
+		dos.setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGE, Color.ORANGE,Color.ORANGE,Color.ORANGE));
 		btn3 = new BitmapButtonField(Pedidos,Pedidos1);
 		btn3.setChangeListener(this);
-		btn3.setMargin(distancia, distanciaL, distancia, distanciaL);
+		btn3.setMargin(0, distanciaL, distancia, distanciaL);
 		
+		btn4 = new BitmapButtonField(Llamar,Llamar1);
+		btn4.setChangeListener(this);
+		btn4.setMargin(0, distanciaL, distancia, distanciaL);
 	
 		
-		if (Display.getWidth() == 320 || Display.getWidth() == 480)
+		if (Display.getWidth() == 320)
 		{
-			tIcono = 120;
-			
-			uno.add(btn1);
-			uno.add(btn2);
-			content.add(uno);
-			dos.add(btn3);
-			//dos.add(btn2);
-			content.add(dos);	
-			
-			
-		}else if (Display.getWidth() == 480 && Display.getHeight() >= 640)
+			content.setMargin(20, 0, 0, 0);
+		}
+		else if (Display.getWidth() == 480)
 		{
-			tIcono = 120;
-			
-			uno.add(btn1);
-			uno.add(btn2);
-			content.add(uno);
-			dos.add(btn3);
-			//dos.add(btn2);
-			content.add(dos);	
-			
-			
-		}else if (Display.getWidth() == 360 && Display.getHeight() == 480)
+			content.setMargin(45, 0, 0, 0);
+		}
+		else if (Display.getWidth() == 480 && Display.getHeight() >= 640)
 		{
-			
-			uno.add(btn1);
-			uno.add(btn2);
-			content.add(uno);
-			dos.add(btn3);
-			//dos.add(btn2);
-			content.add(dos);	
-
-			
-		}else{
-			
-			uno.add(btn1);
-			uno.add(btn2);
-			
-			content.add(uno);
-			dos.add(btn3);
-			dos.add(btn2);
-			content.add(dos);
+			content.setMargin(25, 0, 0, 0);
+		}
+		else if (Display.getWidth() == 360 && Display.getHeight() == 480)
+		{
+			content.setMargin(60, 0, 0, 0);
+		}
+		else if (Display.getWidth() == 640)
+		{
+			content.setMargin(55, 0, 0, 0);
 		
 		}
+		uno.add(btn1);
+		uno.add(btn2);
+		content.add(uno);
+		dos.add(btn3);
+		dos.add(btn4);
+		content.add(dos);	
 		add(content);
 		    }
 		public void fieldChanged(Field field, int arg1) {
@@ -245,6 +273,21 @@ public final class Menu extends Metodos implements FieldChangeListener
 					// TODO Auto-generated catch block
 					openScreen(new ErrorPage());
 				}
+		    
+			}else if(btn4== field){
+				 try {
+						String phoneNumber = "77879532";
+						if ( phoneNumber.length() == 0 ){
+						   Dialog.alert("No se puede realizar la llamada,\nIntentelo mas tarde. Gracias");
+						}
+						else {
+						    PhoneArguments call = new PhoneArguments (PhoneArguments.ARG_CALL,phoneNumber);
+						    Invoke.invokeApplication(Invoke.APP_TYPE_PHONE, call);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						Dialog.alert("No se puede realizar la llamada,\nIntentelo mas tarde. Gracias");
+					}  
 		    
 			}
 			 

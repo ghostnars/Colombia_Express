@@ -2,6 +2,7 @@ package mypackage;
 
 import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.system.Display;
+import net.rim.device.api.ui.Color;
 import net.rim.device.api.ui.Field;
 import net.rim.device.api.ui.FieldChangeListener;
 import net.rim.device.api.ui.TransitionContext;
@@ -14,51 +15,62 @@ import estilos.Metodos;
 
 public class ErrorPage extends Metodos implements FieldChangeListener{
 	
-	BitmapField logo;
-	int AnchoImagen = 640;
-	int AltoImagen = 79;
+	Bitmap headImage;
+	Bitmap bitmapImg;
 	public ErrorPage(){
-		Bitmap bitmapImg = Bitmap.getBitmapResource("nasty.png");
-		//getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
-		getMainManager().setBackground(BackgroundFactory.createSolidBackground(0x425d7b));
+		
+		if (Display.getWidth() == 320)	
+		{
+			bitmapImg = Bitmap.getBitmapResource("error_320.png");
+			
+		}
+		else if (Display.getWidth() == 360)	
+		{
+			bitmapImg = Bitmap.getBitmapResource("error_360.png");
+			
+		}
+		else if (Display.getWidth() == 480)	
+		{
+			bitmapImg = Bitmap.getBitmapResource("error_480.png");
+			
+		}
+		else if (Display.getWidth() == 640)	
+		{
+
+			bitmapImg = Bitmap.getBitmapResource("error_640.png");
+		}
+			
+		getMainManager().setBackground(BackgroundFactory.createBitmapBackground(bitmapImg));
+		
 		if (Display.getWidth() == 320)
 		{
-			logo = new BitmapField(Bitmap.getBitmapResource("error_240.png"));
-			AnchoImagen = 320;	
-			AltoImagen = 39;
+			headImage = Bitmap.getBitmapResource("titulo_320.png");
 		}
 		if (Display.getWidth() == 360)
 		{
-			logo = new BitmapField(Bitmap.getBitmapResource("error_360.png"));
-			AnchoImagen = 360;	
-			AltoImagen = 44;
+			headImage = Bitmap.getBitmapResource("titulo_360.png");
+
 		}
 		if (Display.getWidth() == 480)
 		{
-			logo = new BitmapField(Bitmap.getBitmapResource("error_360.png"));
-			AnchoImagen = 360;	
-			AltoImagen = 44;
+			headImage = Bitmap.getBitmapResource("titulo_480.png");
 		}	
 		if (Display.getWidth() == 640)
 		{
-			
-			logo = new BitmapField(Bitmap.getBitmapResource("error_480.png"));
-			AnchoImagen = 480;	
-			AltoImagen = 58;
+			headImage = Bitmap.getBitmapResource("titulo_640.png");
+
 		}
 		
 		
-		/*Bitmap imagen 	=  resizeBitmap(Bitmap.getBitmapResource("headImage.png"), AnchoImagen, AltoImagen);
-		BitmapField bitmapImg1 = new BitmapField( imagen, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
+		BitmapField bitmapImg1 = new BitmapField( headImage, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
 		HorizontalFieldManager head = new HorizontalFieldManager(Field.USE_ALL_WIDTH | Field.FIELD_HCENTER | Field.FIELD_VCENTER);
-		head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.SILVER,Color.SILVER));
+		head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.GOLD, Color.GOLD,Color.GOLD,Color.GOLD));
 		head.add(bitmapImg1);
-		head.setMargin(0, 0, 0, 0);
-		add(head);*/
+		//head.setMargin(0, 0, -5, 0);
+		setBanner(head);
 		
-		HorizontalFieldManager rowHolder = new HorizontalFieldManager(NO_HORIZONTAL_SCROLL | NO_VERTICAL_SCROLL| Field.FIELD_HCENTER );
-		rowHolder.add(logo);
-		add(rowHolder);
+
+	
 		
 	}
 	

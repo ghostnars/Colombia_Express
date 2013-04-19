@@ -22,6 +22,7 @@ public class SplashScreen extends MainScreen {
 	String var = "vacio";
 	Config path = new Config();
 	Config statement = new Config();
+	BitmapField bmp;
     public SplashScreen() {
     	
         super(SplashScreen.USE_ALL_HEIGHT | SplashScreen.NO_VERTICAL_SCROLL);
@@ -29,38 +30,19 @@ public class SplashScreen extends MainScreen {
         try{
         	
         setTitle((LabelField)null) ; // hide screen title  
-        BitmapField bmp = new BitmapField(Utils.getFitBitmapImage("splash1.png",Display.getWidth(), Display.getHeight()),BitmapField.FIELD_HCENTER | BitmapField.FIELD_VCENTER);  
+    	if (Display.getWidth() > Display.getHeight())
+		{	
+        bmp = new BitmapField(Utils.getFitBitmapImage("splash1.png",Display.getWidth(), Display.getHeight()),BitmapField.FIELD_HCENTER | BitmapField.FIELD_VCENTER);  
+        }else if (Display.getWidth() == 360){
+        bmp = new BitmapField(Utils.getFitBitmapImage("splash2.png",Display.getWidth(), Display.getHeight()),BitmapField.FIELD_HCENTER | BitmapField.FIELD_VCENTER);  
+	
+        }
+        
         HorizontalFieldManager rowHolder = new HorizontalFieldManager(NO_HORIZONTAL_SCROLL | NO_VERTICAL_SCROLL| Field.FIELD_HCENTER | USE_ALL_HEIGHT );
         rowHolder.add(bmp);
         add(rowHolder);
         
-    	URI uri = URI.create(path.Path());
-    	Database sqliteDB = DatabaseFactory.open(uri);
-        Statement se = sqliteDB.createStatement("SELECT nombre FROM USUARIO WHERE id_User = 1");   
-            se.prepare();
-      		//Dialog.alert("entro");
-            //c tipo Cursor que devuelve un arreglo de registros Statement se = sqliteDB.createStatement(statement.SelectUsuario());
-            Cursor c = se.getCursor();         	
-            Row r;               
-            int i = 0;
-            //mientras c se mueva a la siguiente fila entra e incrementa i + 1
-            while(c.next()) 
-            {
-            	r = c.getRow();          
-            	i++;
-            }
-            c.close();
-            se.close();
-            sqliteDB.close();
-    		//si i no incremento en nada var toma el valor de uno
-            if (i==0)
-            {
-            	var = "no";		
-            }
-            if (i==1)
-            {
-            	var = "si";	
-            }
+    	
                
         }catch (Exception e){
         e.printStackTrace();

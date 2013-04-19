@@ -45,15 +45,7 @@ public class MyApp extends UiApplication
 	     	Database sqliteDB = DatabaseFactory.create(uri);
 	     		//Statement st utilizado para crear las sentencias SQL
 	     	
-		     	Statement st = sqliteDB.createStatement(statement.CreateUsuario());
-		     	st.prepare();
-				st.execute();
-				st.close();
-				
-				Statement cn = sqliteDB.createStatement(statement.CreateNoticia());
-				cn.prepare();
-				cn.execute();
-				cn.close();	
+
 				
 		     	Statement co = sqliteDB.createStatement(statement.CreateOferta());				
 				co.prepare();
