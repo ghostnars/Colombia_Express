@@ -16,7 +16,7 @@ import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
 import net.rim.device.api.ui.decor.BorderFactory;
-import promocion.Promocion;
+import producto.Producto;
 
 import com.blackberry.facebook.Facebook;
 
@@ -185,7 +185,7 @@ public final class CopyOfMenu extends Metodos implements FieldChangeListener
 		        transition.setIntAttribute(TransitionContext.ATTR_STYLE, TransitionContext.STYLE_PUSH);
 		        UiEngineInstance engine = Ui.getUiEngineInstance();
 		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
-		        openScreen(new Promocion(0));
+		        openScreen(new Producto(0));
 		        
 			}else if(btn2== field){
 				Status.show("Cargando Noticias...",1000 );

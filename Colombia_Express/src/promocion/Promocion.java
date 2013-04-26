@@ -1,4 +1,4 @@
-package promocion;
+package Promocion;
 
 import java.util.Vector;
 
@@ -52,7 +52,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 	String getTipo = Autenticacion.getConnectionString()[1];	
 	String ServiceUrl = "http://www.buzzcoapp.com/admin2/webServices/servicioWeb_ColombiaExpress.php"+tipoConexion; 
 	String ServiceNamespace = "http://www.buzzcoApp.com/admin2/webServices";
-	String methodName = "getProductos";
+	String methodName = "getPromociones";
 	String idAfiliado = "33";
 	int y,x,z;
 	int ax,bx;
@@ -64,6 +64,15 @@ public class Promocion extends Metodos implements FieldChangeListener
 	String nombre;
 	String descripcion;
 	String imagen;
+	String inicio;
+	String fin;
+	String estado;
+	
+	
+	
+	
+	
+	
 	
 	Vector array 			= new Vector();
 	Vector bb 				= new Vector();
@@ -146,8 +155,8 @@ public class Promocion extends Metodos implements FieldChangeListener
 				setBanner(head);
 				
 			//Status.show(getTipo, 2000);
-				validarDatos();
-				//descargarDatos();
+				//validarDatos();
+				descargarDatos();
 				MenuItem _viewItem1 = new MenuItem(" Actualizar lista", 110, 1){
 					
 					public void run(){
@@ -255,6 +264,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 				if(flag == 0){
 					
 					if(getTipo.equals("wifi")){
+						Status.show("Descargando Datos...");
 						eliminarDatos();
 						descargarDatos();
 					}else if(getTipo.equals("BIBS")){
@@ -304,35 +314,46 @@ public class Promocion extends Metodos implements FieldChangeListener
 	        ht.call(ServiceUrl + "/" + methodName, envelope);         
 	        array = (Vector) envelope.getResponse();
 	        if(!(array.size()==0)){
-	        	//Dialog.alert("tamaño "+a.size());
+	        	//Dialog.alert("tamaño "+array.size());
 	        	for(int i=0;i<array.size();i++){
 	        		
 	        		res = array.elementAt(i).toString();
-	        		
+	        		Dialog.alert(" "+res);
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					id=res.substring(y+1, z);
 					
-					
+					//Dialog.alert(" "+id);
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					nombre=res.substring(y+1, z);
-					
+					//Dialog.alert(" "+nombre);
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					descripcion=res.substring(y+1, z);
-					
+					//Dialog.alert(" "+descripcion);
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					imagen=res.substring(y+1, z);
-					
+					//Dialog.alert(" "+imagen);
+					res=res.substring(z+1, res.length());
+					y=res.indexOf("=");z=0;z=res.indexOf(";");
+					inicio=res.substring(y+1, z);
+					Dialog.alert(" "+inicio);
+					res=res.substring(z+1, res.length());
+					y=res.indexOf("=");z=0;z=res.indexOf(";");
+					fin=res.substring(y+1, z);
+					Dialog.alert(" "+fin);
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					precio=res.substring(y+1, z);
-					
-					
+					Dialog.alert(" "+precio);
+					res=res.substring(z+1, res.length());
+					y=res.indexOf("=");z=0;z=res.indexOf(";");
+					estado=res.substring(y+1, z);
+					Dialog.alert(" "+estado);
 					res=res.substring(z+1, res.length());
 					
-					try
+					/*try
 					{
 						URI uri3 = URI.create(path.Path());
 						//Dialog.alert(""+path.Path());
@@ -348,7 +369,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 					catch(Exception e)
 					{	
 					Dialog.alert(e.getMessage()+"error en el insert");
-						//cambiar();
+						cambiar();
 					}
 					/*id = "";
 					nombre ="";

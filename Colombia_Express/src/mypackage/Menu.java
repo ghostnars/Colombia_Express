@@ -2,10 +2,7 @@ package mypackage;
 
 
 import net.rim.blackberry.api.invoke.Invoke;
-import net.rim.blackberry.api.invoke.MessageArguments;
 import net.rim.blackberry.api.invoke.PhoneArguments;
-import net.rim.blackberry.api.mail.Address;
-import net.rim.blackberry.api.mail.Message;
 import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.system.Display;
 import net.rim.device.api.ui.Color;
@@ -19,13 +16,14 @@ import net.rim.device.api.ui.component.Dialog;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
-import promocion.Promocion;
+import producto.Producto;
+import Promocion.Promocion;
 import estilos.BitmapButtonField;
 import estilos.Metodos;
 
 public final class Menu extends Metodos implements FieldChangeListener
 {
-	private BitmapButtonField btn1,btn2,btn3,btn4;
+	private BitmapButtonField btn1,btn2,btn3,btn4,btn5;
 	
 
 	int tIcono = 160;
@@ -43,7 +41,8 @@ public final class Menu extends Metodos implements FieldChangeListener
 	Bitmap Promocion1;
 	Bitmap Llamar;
 	Bitmap Llamar1;
-
+	Bitmap Producto;
+	Bitmap Producto1;
 	Bitmap headImage;
 	Bitmap bitmapImg;
 	
@@ -99,10 +98,12 @@ public final class Menu extends Metodos implements FieldChangeListener
 			Pedidos1 	=  Bitmap.getBitmapResource("1pedidos1.png");
 			Perfil 		=  Bitmap.getBitmapResource("1perfil.png");
 			Perfil1	 	=  Bitmap.getBitmapResource("1perfil1.png");
-			Promocion	=  Bitmap.getBitmapResource("1promo.png");
-			Promocion1 	=  Bitmap.getBitmapResource("1promo1.png");
 			Llamar		=  Bitmap.getBitmapResource("1llamar.png");
 			Llamar1 	=  Bitmap.getBitmapResource("1llamar1.png");
+			Promocion	=  Bitmap.getBitmapResource("1promo.png");
+			Promocion1 	=  Bitmap.getBitmapResource("1promo1.png");
+			Producto	=  Bitmap.getBitmapResource("1produc.png");
+			Producto1 	=  Bitmap.getBitmapResource("1produc1.png");
 		}
 		if (Display.getWidth() == 360)
 		{
@@ -116,10 +117,12 @@ public final class Menu extends Metodos implements FieldChangeListener
 			Pedidos1 	=  Bitmap.getBitmapResource("2pedidos1.png");
 			Perfil 		=  Bitmap.getBitmapResource("2perfil.png");
 			Perfil1	 	=  Bitmap.getBitmapResource("2perfil1.png");
-			Promocion	=  Bitmap.getBitmapResource("2promo.png");
-			Promocion1 	=  Bitmap.getBitmapResource("2promo1.png");
 			Llamar		=  Bitmap.getBitmapResource("2llamar.png");
 			Llamar1 	=  Bitmap.getBitmapResource("2llamar1.png");
+			Promocion	=  Bitmap.getBitmapResource("2promo.png");
+			Promocion1 	=  Bitmap.getBitmapResource("2promo1.png");
+			Producto	=  Bitmap.getBitmapResource("2produc.png");
+			Producto1 	=  Bitmap.getBitmapResource("2produc1.png");
 			
 		}
 		if (Display.getWidth() == 480)
@@ -134,10 +137,12 @@ public final class Menu extends Metodos implements FieldChangeListener
 			Pedidos1 	=  Bitmap.getBitmapResource("pedidos1.png");
 			Perfil 		=  Bitmap.getBitmapResource("perfil.png");
 			Perfil1	 	=  Bitmap.getBitmapResource("perfil1.png");
-			Promocion	=  Bitmap.getBitmapResource("promo.png");
-			Promocion1 	=  Bitmap.getBitmapResource("promo1.png");
+			Producto	=  Bitmap.getBitmapResource("produc.png");
+			Producto1 	=  Bitmap.getBitmapResource("produc1.png");
 			Llamar		=  Bitmap.getBitmapResource("llamar.png");
 			Llamar1 	=  Bitmap.getBitmapResource("llamar1.png");
+			Promocion	=  Bitmap.getBitmapResource("promo.png");
+			Promocion1 	=  Bitmap.getBitmapResource("promo1.png");
 						
 		}	
 		if (Display.getWidth() == 640)
@@ -152,10 +157,12 @@ public final class Menu extends Metodos implements FieldChangeListener
 			Pedidos1 	=  Bitmap.getBitmapResource("0pedidos1.png");
 			Perfil 		=  Bitmap.getBitmapResource("0perfil.png");
 			Perfil1	 	=  Bitmap.getBitmapResource("0perfil1.png");
-			Promocion	=  Bitmap.getBitmapResource("0promo.png");
-			Promocion1 	=  Bitmap.getBitmapResource("0promo1.png");
+			Producto	=  Bitmap.getBitmapResource("0produc.png");
+			Producto1 	=  Bitmap.getBitmapResource("0produc1.png");
 			Llamar		=  Bitmap.getBitmapResource("0llamar.png");
 			Llamar1 	=  Bitmap.getBitmapResource("0llamar1.png");
+			Promocion	=  Bitmap.getBitmapResource("0promo.png");
+			Promocion1 	=  Bitmap.getBitmapResource("0promo1.png");
 			
 		}
 		if (Display.getWidth() == 480 && Display.getHeight() == 640)
@@ -189,7 +196,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		HorizontalFieldManager uno = new HorizontalFieldManager(Field.FIELD_HCENTER |Field.FIELD_VCENTER);
 		uno.setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGE, Color.ORANGE,Color.ORANGE,Color.ORANGE));
 		
-		btn1 = new BitmapButtonField(Promocion, Promocion1);
+		btn1 = new BitmapButtonField(Producto, Producto1);
 		btn1.setChangeListener(this);
 		btn1.setMargin(distancia, distanciaL, distancia, distanciaL);
 		
@@ -206,36 +213,81 @@ public final class Menu extends Metodos implements FieldChangeListener
 		btn4 = new BitmapButtonField(Llamar,Llamar1);
 		btn4.setChangeListener(this);
 		btn4.setMargin(0, distanciaL, distancia, distanciaL);
-	
+		
+		HorizontalFieldManager tres = new HorizontalFieldManager(Field.FIELD_HCENTER |Field.FIELD_VCENTER);
+		tres.setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGE, Color.ORANGE,Color.ORANGE,Color.ORANGE));
+		
+		btn5 = new BitmapButtonField(Promocion,Promocion1);
+		btn5.setChangeListener(this);
+		btn5.setMargin(0, distanciaL, distancia, distanciaL);
 		
 		if (Display.getWidth() == 320)
 		{
+			btn5.setMargin(distancia, distanciaL, distancia, distanciaL);
 			content.setMargin(20, 0, 0, 0);
+			uno.add(btn1);
+			uno.add(btn2);
+			uno.add(btn5);
+			content.add(uno);
+			dos.add(btn3);
+			dos.add(btn4);
+			content.add(dos);			
+			add(content);
 		}
 		else if (Display.getWidth() == 480)
 		{
+			btn5.setMargin(distancia, distanciaL, distancia, distanciaL);
 			content.setMargin(45, 0, 0, 0);
+			uno.add(btn1);
+			uno.add(btn2);
+			uno.add(btn5);
+			content.add(uno);
+			dos.add(btn3);
+			dos.add(btn4);
+			content.add(dos);
+			add(content);
 		}
 		else if (Display.getWidth() == 480 && Display.getHeight() >= 640)
-		{
+		{			
 			content.setMargin(25, 0, 0, 0);
+			uno.add(btn1);
+			uno.add(btn2);
+			content.add(uno);
+			dos.add(btn3);
+			dos.add(btn4);
+			content.add(dos);
+			tres.add(btn5);
+			content.add(tres);
+			add(content);
 		}
 		else if (Display.getWidth() == 360 && Display.getHeight() == 480)
 		{
-			content.setMargin(60, 0, 0, 0);
+			content.setMargin(25, 0, 0, 0);
+			uno.add(btn1);
+			uno.add(btn2);
+			content.add(uno);
+			dos.add(btn3);
+			dos.add(btn4);
+			content.add(dos);
+			tres.add(btn5);
+			content.add(tres);
+			add(content);
 		}
 		else if (Display.getWidth() == 640)
 		{
+			btn5.setMargin(distancia, distanciaL, distancia, distanciaL);
 			content.setMargin(55, 0, 0, 0);
+			uno.add(btn1);
+			uno.add(btn2);
+			uno.add(btn5);
+			content.add(uno);
+			dos.add(btn3);
+			dos.add(btn4);
+			content.add(dos);
+			add(content);
 		
 		}
-		uno.add(btn1);
-		uno.add(btn2);
-		content.add(uno);
-		dos.add(btn3);
-		dos.add(btn4);
-		content.add(dos);	
-		add(content);
+		
 		    }
 		public void fieldChanged(Field field, int arg1) {
 			// TODO Auto-generated method stub
@@ -247,7 +299,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		        transition.setIntAttribute(TransitionContext.ATTR_STYLE, TransitionContext.STYLE_PUSH);
 		        UiEngineInstance engine = Ui.getUiEngineInstance();
 		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
-		        openScreen(new Promocion(0));
+		        openScreen(new Producto(0));
 		        
 			}else if(btn2== field){
 				TransitionContext transition = new TransitionContext(TransitionContext.TRANSITION_SLIDE);
@@ -259,7 +311,7 @@ public final class Menu extends Metodos implements FieldChangeListener
 		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
 		        openScreen(new Perfil());
 			}else if(btn3== field){
-				try {
+				/*try {
 					
 					Message m = new Message();
 					Address a = new Address("ghostnars@gmail.com", "Colombia Express");
@@ -272,8 +324,15 @@ public final class Menu extends Metodos implements FieldChangeListener
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					openScreen(new ErrorPage());
-				}
-		    
+				}*/
+				TransitionContext transition = new TransitionContext(TransitionContext.TRANSITION_SLIDE);
+		        transition.setIntAttribute(TransitionContext.ATTR_DURATION, 200);
+		        transition.setIntAttribute(TransitionContext.ATTR_DIRECTION, TransitionContext.DIRECTION_LEFT);
+		        transition.setIntAttribute(TransitionContext.ATTR_STYLE, TransitionContext.STYLE_PUSH);
+		        
+		        UiEngineInstance engine = Ui.getUiEngineInstance();
+		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
+		        openScreen(new Correo());
 			}else if(btn4== field){
 				 try {
 						String phoneNumber = "77879532";
@@ -288,6 +347,16 @@ public final class Menu extends Metodos implements FieldChangeListener
 						// TODO Auto-generated catch block
 						Dialog.alert("No se puede realizar la llamada,\nIntentelo mas tarde. Gracias");
 					}  
+		    
+			}else if(btn5== field){
+				TransitionContext transition = new TransitionContext(TransitionContext.TRANSITION_SLIDE);
+		        transition.setIntAttribute(TransitionContext.ATTR_DURATION, 200);
+		        transition.setIntAttribute(TransitionContext.ATTR_DIRECTION, TransitionContext.DIRECTION_LEFT);
+		        transition.setIntAttribute(TransitionContext.ATTR_STYLE, TransitionContext.STYLE_PUSH);
+		        
+		        UiEngineInstance engine = Ui.getUiEngineInstance();
+		        engine.setTransition(this, null, UiEngineInstance.TRIGGER_PUSH, transition);
+		        openScreen(new Promocion(0));
 		    
 			}
 			 

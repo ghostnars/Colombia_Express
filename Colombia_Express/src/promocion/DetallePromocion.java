@@ -1,4 +1,4 @@
-package promocion;
+package Promocion;
 
 import javax.microedition.io.file.FileConnection;
 

@@ -14,7 +14,7 @@ import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.LabelField;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.MainScreen;
-import promocion.Promocion;
+import producto.Producto;
 import database.Config;
 import estilos.Utils;
 

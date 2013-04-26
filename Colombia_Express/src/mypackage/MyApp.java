@@ -52,6 +52,12 @@ public class MyApp extends UiApplication
 				co.execute();
 				co.close();
 				
+				Statement cp = sqliteDB.createStatement(statement.CreatePromocion());				
+				cp.prepare();
+				cp.execute();
+				cp.close();
+				
+				
 			sqliteDB.close();
 				
 	     }catch (Exception e){
