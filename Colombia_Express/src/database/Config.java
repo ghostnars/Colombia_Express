@@ -1,7 +1,7 @@
 package database;
 public class Config {
 	
-	private String version = "0.0.9.sqlite";
+	private String version = "0.1.0.sqlite";
 	private String path;
 	
 	public String Path(){
@@ -46,7 +46,7 @@ public class Config {
 	}
 	
 	public String SelectPromocion(){
-		String Selectpromo = "SELECT * FROM PROMO WHERE id_Afi = ";
+		String Selectpromo = "SELECT * FROM PROMOCION WHERE id_Afi = ";
 		return Selectpromo;
 	}
 	public String SelectPromocionDesc(){

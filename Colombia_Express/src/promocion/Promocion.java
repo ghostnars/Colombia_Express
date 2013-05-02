@@ -81,7 +81,10 @@ public class Promocion extends Metodos implements FieldChangeListener
 	Vector vectorTitulo 	= new Vector();
 	Vector vectorImagen 	= new Vector();
 	Vector vectorDesc 		= new Vector();
-
+	Vector vectorInicio 	= new Vector();
+	Vector vectorFin 		= new Vector();
+	Vector vectorEstado 	= new Vector();
+	
 	Vector vectorPrecio 	= new Vector();
 	
 	String res = "";
@@ -96,9 +99,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 	FileConnection fc;
 	FileConnection fconn;
 	FileConnection fconn1;
-	private BitmapButtonField btnUpdate;
 	Font fTitulo, fDetalle;
-	private String Desc;
 	int AnchoImagen = 640;
 	int AltoImagen = 79;
 	int flag = 0;
@@ -155,8 +156,9 @@ public class Promocion extends Metodos implements FieldChangeListener
 				setBanner(head);
 				
 			//Status.show(getTipo, 2000);
-				//validarDatos();
-				descargarDatos();
+				validarDatos();
+				//descargarDatos();
+				//cargarDatos();
 				MenuItem _viewItem1 = new MenuItem(" Actualizar lista", 110, 1){
 					
 					public void run(){
@@ -209,7 +211,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 		{
 			URI uri1 = URI.create(path.Path());
 			Database sqliteDB1 = DatabaseFactory.open(uri1); 
-			Statement in = sqliteDB1.createStatement("DELETE FROM OFERTA");
+			Statement in = sqliteDB1.createStatement("DELETE FROM PROMOCION");
 			in.prepare();
 			in.execute();
 			in.close();
@@ -318,7 +320,7 @@ public class Promocion extends Metodos implements FieldChangeListener
 	        	for(int i=0;i<array.size();i++){
 	        		
 	        		res = array.elementAt(i).toString();
-	        		Dialog.alert(" "+res);
+	        		//Dialog.alert(" "+res);
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					id=res.substring(y+1, z);
 					
@@ -338,28 +340,28 @@ public class Promocion extends Metodos implements FieldChangeListener
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					inicio=res.substring(y+1, z);
-					Dialog.alert(" "+inicio);
+					//Dialog.alert(" "+inicio);
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					fin=res.substring(y+1, z);
-					Dialog.alert(" "+fin);
+					//Dialog.alert(" "+fin);
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					precio=res.substring(y+1, z);
-					Dialog.alert(" "+precio);
+					//Dialog.alert(" "+precio);
 					res=res.substring(z+1, res.length());
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					estado=res.substring(y+1, z);
-					Dialog.alert(" "+estado);
+					//Dialog.alert(" "+estado);
 					res=res.substring(z+1, res.length());
 					
-					/*try
+					try
 					{
 						URI uri3 = URI.create(path.Path());
 						//Dialog.alert(""+path.Path());
 						Database sqliteDB3 = DatabaseFactory.open(uri3); 
 						//Dialog.alert(statement.InsertOferta()+"'"+idAfiliado+"','"+id+"','"+nombre+"','"+descripcion+"','"+imagen+"','"+precio+"');");
-						Statement in = sqliteDB3.createStatement(statement.InsertOferta()+"'"+idAfiliado+"','"+id+"','"+nombre+"','"+descripcion+"','"+imagen+"','"+precio+"');");
+						Statement in = sqliteDB3.createStatement(statement.InsertPromocion()+"'"+idAfiliado+"','"+id+"','"+nombre+"','"+descripcion+"','"+imagen+"','"+inicio+"','"+fin+"','"+precio+"','"+estado+"');");
 						in.prepare();
 						in.execute();
 						in.close();
@@ -396,7 +398,7 @@ public class Promocion extends Metodos implements FieldChangeListener
     	try{  
 			uri = URI.create(path.Path());
 			Database sqliteDB = DatabaseFactory.open(uri);  
-			Statement slc = sqliteDB.createStatement(statement.SelectOferta()+idAfiliado);
+			Statement slc = sqliteDB.createStatement(statement.SelectPromocion()+idAfiliado);
             slc.prepare();
             Cursor sc = slc.getCursor();               	
             Row rc;                
@@ -407,8 +409,10 @@ public class Promocion extends Metodos implements FieldChangeListener
                 vectorTitulo.addElement(rc.getString(2));
                 vectorDesc.addElement(rc.getString(3));
 				vectorImagen.addElement(rc.getString(4));
-				vectorPrecio.addElement(rc.getString(5));
-				
+				vectorInicio.addElement(rc.getString(5));
+				vectorFin.addElement(rc.getString(6));
+                vectorPrecio.addElement(rc.getString(7));
+				vectorEstado.addElement(rc.getString(8));
 				
 				
 				VerticalFieldManager vfmLabel = new VerticalFieldManager(Field.FIELD_VCENTER);
@@ -450,7 +454,7 @@ public class Promocion extends Metodos implements FieldChangeListener
             sc.close();
 			sqliteDB.close(); 
         }catch (Exception e){
-        	//Dialog.alert("error al entrar a la base "+e.getMessage());
+        	Dialog.alert("error al entrar a la base "+e.getMessage());
         	cambiar();
         }
     	

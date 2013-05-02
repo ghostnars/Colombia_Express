@@ -2,6 +2,7 @@ package Promocion;
 
 import javax.microedition.io.file.FileConnection;
 
+import net.rim.blackberry.api.browser.Browser;
 import net.rim.device.api.browser.field2.BrowserField;
 import net.rim.device.api.browser.field2.BrowserFieldConfig;
 import net.rim.device.api.io.URI;
@@ -21,17 +22,21 @@ import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.LabelField;
 import net.rim.device.api.ui.component.RichTextField;
 import net.rim.device.api.ui.component.SeparatorField;
+import net.rim.device.api.ui.component.Status;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
 import net.rim.device.api.ui.decor.BorderFactory;
+import database.Autenticacion;
 import database.Config;
 import estilos.BitmapButtonField;
 import estilos.Metodos;
 
 public class DetallePromocion extends Metodos implements FieldChangeListener {
-	
-
+	String tipoConexion = Autenticacion.getConnectionString()[0];
+	String getTipo = Autenticacion.getConnectionString()[1];
+	Bitmap facebook;
+	Bitmap facebook1;
 	Bitmap imagen1;
 	URI uri;
 	String idOfertas;
@@ -42,26 +47,25 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 	RichTextField lblPregular;
 	Font fBold,fLite;
 	FileConnection fconn;
-	private BitmapButtonField btnUpdate;
-	int AnchoImagen = 640;
-	int AltoImagen = 79;
 	int tFuente = 24;
 	int imgAlto = 220;
 	int imgAncho = 364;
+	int imgIzquierda = 50;
 	int lblIzquierda = 50;
+	int lblTop = 110;
 	String Nombre, Descripcion, Imagen, Regular;
 	String imgWeb;
-	int izquierda = 60;
-	int derecha = 60;
 	int ancho;
 	int alto;
-	
+	Bitmap imgDetalle = Bitmap.getBitmapResource("detalle_640.png");
 	int btn_Alto = 56;
 	int btn_Ancho = 290;
+	int allContentH = 224;
 
 	Bitmap headImage;
 	
 	int compensacion = 0;
+	BitmapButtonField btnFacebook;
 	public DetallePromocion(String titulo,String descripcion, String imagen,String precio){
 		Nombre 		= titulo;
 		Imagen 		= imagen;
@@ -76,74 +80,70 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		
 		if (Display.getWidth() == 320)
 		{
-			headImage = Bitmap.getBitmapResource("titulo_320.png");
-			imgWeb = "<img width='274' height='180'  src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			headImage = Bitmap.getBitmapResource("titulo3_320.png");
+			imgWeb = "<img width='320' height='211'  src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			allContentH = 112;
 			
-			AnchoImagen = 320;	
-			AltoImagen = 39;
+			
+			lblIzquierda = 43;
+			lblTop = 60;
+			imgIzquierda = 15;
+			
 			tFuente = 18;
 			
-			izquierda = 15;
-			derecha = 15;
-			
-			lblIzquierda = 10;
-			
-			alto = 49;
-			ancho = 250;
-			compensacion = 30;
-			
+			facebook = Bitmap.getBitmapResource("facebook_290.png");
+			facebook1 = Bitmap.getBitmapResource("facebook1_290.png");
+			imgDetalle = Bitmap.getBitmapResource("detalle_320.png");
 		}
 		
 		if (Display.getWidth() == 360)
 		{
-			headImage = Bitmap.getBitmapResource("titulo_360.png");
-			imgWeb = "<img width='294' height='193' src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			headImage = Bitmap.getBitmapResource("titulo3_360.png");
+			imgWeb = "<img width='360' height='200' src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			allContentH = 126;
 			
-			AnchoImagen = 360;	
-			AltoImagen = 44;
 			
-			izquierda = 25;
-			derecha = 25;
+			lblIzquierda = 47;
+			lblTop = 67;
+			imgIzquierda = 25;
 			
-			tFuente = 19;
-			lblIzquierda = 20;
+			tFuente = 20;
 			
-			alto = 59;
-			ancho = 310;
-			
+			facebook = Bitmap.getBitmapResource("facebook_310.png");
+			facebook1 = Bitmap.getBitmapResource("facebook1_310.png");
+			imgDetalle = Bitmap.getBitmapResource("detalle_360.png");
 		}
 		if (Display.getWidth() == 480)
 		{
-			imgWeb = "<img width='384' height='252'  src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
-			headImage = Bitmap.getBitmapResource("titulo_480.png");
-			AnchoImagen = 360;	
-			AltoImagen = 44;
+			imgWeb = "<img width='480' height='317'  src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			headImage = Bitmap.getBitmapResource("titulo3_480.png");
+			allContentH = 169;
 			
-
+			lblIzquierda = 65;
+			lblTop = 85;
 			
-			izquierda = 40;
-			derecha = 40;
-			
-			tFuente = 19;
-			
-			lblIzquierda = 35;
-			
-			
+			tFuente = 30;
+			imgIzquierda = 40;
+					
+			facebook = Bitmap.getBitmapResource("facebook_400.png");
+			facebook1 = Bitmap.getBitmapResource("facebook1_400.png");
+			imgDetalle = Bitmap.getBitmapResource("detalle_480.png");
 		}	
 		if (Display.getWidth() == 640)
 		{
-			headImage = Bitmap.getBitmapResource("titulo_640.png");
-			AnchoImagen = 480;	
-			AltoImagen = 58;
-			imgWeb = "<img width='524' height='343'  src='"+Imagen+"' style='border:8px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
-			izquierda = 50;
-			derecha = 50;
+			headImage = Bitmap.getBitmapResource("titulo3_640.png");
+			imgWeb = "<img width='640' height='422'  src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			allContentH = 224;
 			
-			lblIzquierda = 45;
+			lblIzquierda = 85;
+			lblTop = 115;
 			
-			tFuente = 35;
+			tFuente = 45;
+			imgIzquierda = 50;
 			
-			
+			facebook = Bitmap.getBitmapResource("facebook_540.png");
+			facebook1 = Bitmap.getBitmapResource("facebook1_540.png");
+			imgDetalle = Bitmap.getBitmapResource("detalle_640.png");
 		}
 		 
 		
@@ -173,81 +173,108 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
         myBrowserFieldConfig.setProperty(BrowserFieldConfig.NAVIGATION_MODE,BrowserFieldConfig.NAVIGATION_MODE_NONE);
         myBrowserFieldConfig.setProperty(BrowserFieldConfig.ENABLE_COOKIES, Boolean.TRUE);
         BrowserField browserField = new BrowserField(myBrowserFieldConfig);
-        browserField.setMargin(10, derecha, 0, izquierda);
-        add(browserField);
+        browserField.setMargin(0, 0, 0, 0);
+       add(browserField);
         //Dialog.alert(imgWeb);
         browserField.displayContent(imgWeb, "http://localhost");
+						
 				
-				Bitmap bordes = Bitmap.getBitmapResource("bg_shadowAnaranjado.png");
-				
-				HorizontalFieldManager pContent = new HorizontalFieldManager(Field.USE_ALL_WIDTH | HorizontalFieldManager.FIELD_HCENTER);
-				pContent.setBorder(BorderFactory.createBitmapBorder(new XYEdges(25,25,25,25), bordes));
-				pContent.setMargin(5,lblIzquierda , 0, lblIzquierda);
-				VerticalFieldManager pLabel = new VerticalFieldManager();
-				VerticalFieldManager Precio = new VerticalFieldManager(Field.FIELD_RIGHT);
-				
-				
-				LabelField lblRegular = new LabelField("Precio Regular:"){
-			        public void paint(Graphics g){      
-			            g.setColor(Color.WHITE);
-			            super.paint(g);
-			        }};
-				lblRegular.setMargin(15, 10, 10, lblIzquierda+(lblIzquierda/3));
-				lblRegular.setFont(fBold);
-				
+				HorizontalFieldManager allContent = new HorizontalFieldManager(){
+		            //define width
+		            public int getPreferredWidth()
+		            {
+		                return 640;
+		            }
+		            
+		            //define height
+		            public int getPreferredHeight()
+		            {
+		                return allContentH;
+		            }
+		            
+		            protected void sublayout( int maxWidth, int maxHeight )
+		            {
+		                super.sublayout(getPreferredWidth(), getPreferredHeight());
+		                setExtent(getPreferredWidth(), getPreferredHeight());
+		            }
+		        };
+		        allContent.setBackground(BackgroundFactory.createBitmapBackground(imgDetalle));	
+		        HorizontalFieldManager iContent = new HorizontalFieldManager();
+		        VerticalFieldManager pContent = new VerticalFieldManager(){
+		            //define width
+		            public int getPreferredWidth()
+		            {
+		                return 90;
+		            }
+		            
+		            //define height
+		            public int getPreferredHeight()
+		            {
+		                return 50;
+		            }
+		            
+		            protected void sublayout( int maxWidth, int maxHeight )
+		            {
+		                super.sublayout(getPreferredWidth(), getPreferredHeight());
+		                setExtent(getPreferredWidth(), getPreferredHeight());
+		            }
+		        };
+		        pContent.setMargin(lblTop, 0, 0, lblIzquierda);
+		        VerticalFieldManager dContent = new VerticalFieldManager();
+				dContent.setMargin(lblTop-30, 0, 0, lblIzquierda-35);
 
+				lblPregular		= new RichTextField("$"+Regular, Field.FIELD_HCENTER){
+			        public void paint(Graphics g){      
+			            g.setColor(0x355298);
+			            super.paint(g);
+			        }};
+				lblPregular.setMargin(0, 0, 0, 0);
+				lblPregular.setFont(fBold);
 				
-				lblPregular		= new RichTextField("$ "+Regular.toUpperCase(),Field.FIELD_RIGHT){
+				lblNombre		= new LabelField(Nombre){
 			        public void paint(Graphics g){      
 			            g.setColor(Color.WHITE);
 			            super.paint(g);
 			        }};
-				lblPregular.setMargin(15, 10, 10, lblIzquierda);
-				
-				
-				pLabel.add(lblRegular);
-				Precio.add(lblPregular);
-				pContent.add(pLabel);
-				pContent.add(Precio);
-				add(pContent);
-
-				VerticalFieldManager dContent = new VerticalFieldManager(Field.FIELD_HCENTER | Field.USE_ALL_WIDTH);
-				dContent.setBorder(BorderFactory.createBitmapBorder(new XYEdges(25,25,25,25), bordes));
-				dContent.setMargin(0, lblIzquierda, compensacion + 5, lblIzquierda);
-				lblNombre		= new LabelField(Nombre,Field.FIELD_HCENTER){
-			        public void paint(Graphics g){      
-			            g.setColor(Color.WHITE);
-			            super.paint(g);
-			        }};
-				lblNombre.setMargin(5, 0, 5, 0);
+			    lblNombre.setMargin(0, 0, 0, 0);
+			    lblNombre.setFont(fBold);
 				lblDescripcion 	= new RichTextField(Descripcion){
 			        public void paint(Graphics g){      
 			            g.setColor(Color.WHITE);
 			            super.paint(g);
 			        }};
-			    lblDescripcion.setMargin(5, 0, 5, 0);
-				lblDescripcion.setFont(fLite);
+			    lblDescripcion.setMargin(0, 0, 0, 0);
+				//lblDescripcion.setFont(fLite);
+				
+			    //pContent.setBackground(BackgroundFactory.createLinearGradientBackground(Color.RED, Color.RED,Color.RED,Color.RED));
+			    pContent.add(lblPregular);
+			    
+			   //dContent.setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGE, Color.ORANGE,Color.ORANGE,Color.ORANGE));
 				dContent.add(lblNombre);
-				lblNombre.setFont(fBold);
-				SeparatorField separator = new SeparatorField(){
-			        public void paint(Graphics g){      
-			            g.setColor(Color.WHITE);
-			            super.paint(g);
-			        }};
-				dContent.add(separator);
 				dContent.add(lblDescripcion);
+
+				iContent.add(pContent);
+				iContent.add(dContent);
+				allContent.add(iContent);
+				add(allContent);
 				
-				add(dContent);
-				
-				
-				
+				btnFacebook = new BitmapButtonField(facebook, facebook1);
+				btnFacebook.setChangeListener(this);
+				btnFacebook.setMargin(25,0,15,imgIzquierda);
+				add(btnFacebook);
 			}
 	
 	
 	public void fieldChanged(Field field, int context) {
 		// TODO Auto-generated method stub
-		if(btnUpdate == field){
-			System.exit(0);
+		if(btnFacebook == field){
+			if(getTipo.equals("wifi")){
+				Browser.getDefaultSession().displayPage("http://i-moves.com/colombiaExpress/?nombre="+Nombre+"&descripcion="+Descripcion+"&enlace=http://buzzcoapp.com/&imagen="+Imagen);						
+			}else if(getTipo.equals("BIBS")){		
+				Browser.getDefaultSession().displayPage("http://i-moves.com/colombiaExpress/?nombre="+Nombre+"&descripcion="+Descripcion+"&enlace=http://buzzcoapp.com/&imagen="+Imagen);				
+			}else{
+				Status.show("Necesita internet para enviar un correo",1000 );
+			}
 		}
 	}
 	

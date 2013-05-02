@@ -111,11 +111,11 @@ public class Correo extends Metodos implements FieldChangeListener
 			imgEnviar1 	= Bitmap.getBitmapResource("3enviar1.png");
 			headImage = Bitmap.getBitmapResource("titulo_640.png");
 			letraLength = 35;
-			ancho = 500;
-			alto = 100;
+			ancho = 510;
+			alto = 105;
 			alto0 = 30;
-			top = 10;
-			bottom = 10;
+			top = 7;
+			bottom = 7;
 			
 		}
 		
@@ -181,7 +181,7 @@ public class Correo extends Metodos implements FieldChangeListener
 			        };
 			        vfmTelefono.setBorder(BorderFactory.createBitmapBorder(new XYEdges(12,12,12,12), bordes));
 			        vfmTelefono.setMargin(top, 0, bottom, 0);
-			        txtTelefono = new BasicEditField("", "", 11,BasicEditField.FILTER_INTEGER | BasicEditField.NO_NEWLINE);
+			        txtTelefono = new BasicEditField("", "503 ", 12,BasicEditField.FILTER_INTEGER | BasicEditField.NO_NEWLINE);
 			        
 			        vfmTelefono.add(txtTelefono);
 			       	add(vfmTelefono);

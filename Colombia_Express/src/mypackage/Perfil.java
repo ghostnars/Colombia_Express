@@ -30,6 +30,7 @@ public class Perfil extends Metodos implements FieldChangeListener{
 	Bitmap bordes;
 	private Font fBold,fLite;
 	Bitmap headImage;
+	Bitmap headImage2;
 	int lateral = 20;
 	int tFuente = 25;
 	public Perfil(){
@@ -40,6 +41,7 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		if (Display.getWidth() == 320)
 		{
 			headImage = Bitmap.getBitmapResource("titulo_320.png");
+			headImage2 = Bitmap.getBitmapResource("perfil_320.png");
 			AnchoImagen = 320;	
 			AltoImagen = 39;
 			
@@ -54,6 +56,7 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		if (Display.getWidth() == 360)
 		{
 			headImage = Bitmap.getBitmapResource("titulo_360.png");
+			headImage2 = Bitmap.getBitmapResource("perfil_360.png");
 			AnchoImagen = 360;	
 			AltoImagen = 44;
 			
@@ -69,6 +72,7 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		if (Display.getWidth() == 480)
 		{
 			headImage = Bitmap.getBitmapResource("titulo_480.png");
+			headImage2 = Bitmap.getBitmapResource("perfil_480.png");
 			
 			AnchoImagen = 360;	
 			AltoImagen = 44;
@@ -88,8 +92,8 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		if (Display.getWidth() == 640)
 			
 		{
-			headImage = Bitmap.getBitmapResource("titulo_640.png");
-			
+			headImage = Bitmap.getBitmapResource("titulo2_640.png");
+			headImage2 = Bitmap.getBitmapResource("perfil_640.png");
 			AnchoImagen = 480;	
 			AltoImagen = 58;
 			
@@ -115,8 +119,9 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		 	   System.out.println(e.getMessage());
 		 }
 		
+		getMainManager().setBackground(BackgroundFactory.createBitmapBackground(headImage2));
 
-		BitmapField bitmapImg1 = new BitmapField( headImage, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
+		/*BitmapField bitmapImg1 = new BitmapField( headImage, Field.FIELD_HCENTER | Field.FIELD_VCENTER );
 		HorizontalFieldManager head = new HorizontalFieldManager(Field.USE_ALL_WIDTH | Field.FIELD_HCENTER | Field.FIELD_VCENTER);
 		head.setBackground(BackgroundFactory.createLinearGradientBackground(Color.WHITE, Color.WHITE,Color.SILVER,Color.SILVER));
 		head.add(bitmapImg1);
@@ -128,16 +133,17 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		HorizontalFieldManager cImagen = new HorizontalFieldManager();
 		
 		
-		BitmapField imgPerfil = new BitmapField(resizeBitmap(Bitmap.getBitmapResource("logo.png"), imgAncho, imgAlto ));
+		BitmapField imgPerfil = new BitmapField(headImage2);
 		cImagen.add(imgPerfil);
-		cImagen.setMargin(5,5,5,5);
+		//cImagen.setMargin(5,5,5,5);
 		
 		VerticalFieldManager perfil = new VerticalFieldManager(Field.FIELD_HCENTER);
 		
 		//-----------------------------------------------0xe3b32f//
 		
 		HorizontalFieldManager Content = new HorizontalFieldManager(Field.USE_ALL_WIDTH);
-		Content.setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGERED, Color.ORANGERED,Color.ORANGERED,Color.ORANGERED));
+		//Content.setBackground(BackgroundFactory.createBitmapBackground(headImage2));
+		/*Content.setBackground(BackgroundFactory.createLinearGradientBackground(Color.ORANGERED, Color.ORANGERED,Color.ORANGERED,Color.ORANGERED));
 		
 		VerticalFieldManager cTitulo = new VerticalFieldManager();
 		cTitulo.setBackground(BackgroundFactory.createLinearGradientBackground(0xe9c633, 0xe9c633,0xe9c633,0xe9c633));
@@ -156,11 +162,11 @@ public class Perfil extends Metodos implements FieldChangeListener{
 	            super.paint(g);
 	        }};
 		Ubicacion.setMargin(15, 10, 10, 10);
-		Ubicacion.setFont(fLite);
+		Ubicacion.setFont(fLite);*/
 		
 		
 
-
+/*
 		
 		RichTextField tituloDetalle = new RichTextField("Colombia Express",RichTextField.FIELD_HCENTER){
 	        public void paint(Graphics g){      
@@ -206,10 +212,10 @@ public class Perfil extends Metodos implements FieldChangeListener{
 	    //telefono.setFont(fLite);
 		
 		
-		cTitulo.add(nombre);		
-		cTitulo.add(Ubicacion);
+		//cTitulo.add(nombre);		
+		//cTitulo.add(Ubicacion);
 		Content.add(cImagen);
-		Content.add(cTitulo);
+		//Content.add(cTitulo);
 		
 		add(Content);
 		add(perfil);
@@ -222,7 +228,7 @@ public class Perfil extends Metodos implements FieldChangeListener{
 		cTelefono.add(telefono);
 		add(cTelefono);
 
-		
+		*/
 	}
 	
 	public void fieldChanged(Field field, int context) {

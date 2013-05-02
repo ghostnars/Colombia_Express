@@ -216,7 +216,7 @@ public class Producto extends Metodos implements FieldChangeListener
 		try{
 			uri = URI.create(path.Path());
 			Database sqliteDB = DatabaseFactory.open(uri);     	
-			Statement se = sqliteDB.createStatement(statement.SelectOferta()+idAfiliado+";");
+			Statement se = sqliteDB.createStatement(statement.SelectPromocion()+idAfiliado+";");
 			se.prepare();
 			Cursor c = se.getCursor();               	
 			Row r;                	
@@ -309,7 +309,7 @@ public class Producto extends Metodos implements FieldChangeListener
 	        	for(int i=0;i<array.size();i++){
 	        		
 	        		res = array.elementAt(i).toString();
-	        		Dialog.alert(" "+res);
+	        		//Dialog.alert(" "+res);
 					y=res.indexOf("=");z=0;z=res.indexOf(";");
 					id=res.substring(y+1, z);
 					
@@ -393,7 +393,7 @@ public class Producto extends Metodos implements FieldChangeListener
 				
 				VerticalFieldManager vfmLabel = new VerticalFieldManager(Field.FIELD_VCENTER);
 				vfmLabel.setBackground(BackgroundFactory.createLinearGradientBackground(0xebcc41, 0xebcc41,0xebd359,0xebd359));
-				vfmLabel.setMargin(3, 3, 3, 3);
+				vfmLabel.setMargin(2, 3, 2, 3);
 				
 				
 
