@@ -227,13 +227,14 @@ public class Promocion extends Metodos implements FieldChangeListener
 		try{
 			uri = URI.create(path.Path());
 			Database sqliteDB = DatabaseFactory.open(uri);     	
-			Statement se = sqliteDB.createStatement(statement.SelectOferta()+idAfiliado+";");
+			Statement se = sqliteDB.createStatement(statement.SelectPromocion()+idAfiliado+";");
 			se.prepare();
 			Cursor c = se.getCursor();               	
 			Row r;                	
 			while(c.next()){
 				r = c.getRow(); 
 				incremento ++;
+				//Dialog.alert("incremento"+incremento);
 			}
 			
 			if(incremento == 0){
@@ -255,6 +256,8 @@ public class Promocion extends Metodos implements FieldChangeListener
 				}else if(getTipo.equals("error")){
 					//Status.show("Error de red",1000 );
 					cambiar();
+				}else{
+					cambiar();	
 				}
 				
 			}else if(incremento >= 1){
@@ -382,6 +385,8 @@ public class Promocion extends Metodos implements FieldChangeListener
 					precioReg ="";*/
 					
 	        	}
+            }else{
+            	cambiar();
             }
 	        
 	        cargarDatos();

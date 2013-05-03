@@ -9,6 +9,7 @@ import net.rim.device.api.io.URI;
 import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.system.Display;
 import net.rim.device.api.ui.Color;
+import net.rim.device.api.ui.DrawStyle;
 import net.rim.device.api.ui.Field;
 import net.rim.device.api.ui.FieldChangeListener;
 import net.rim.device.api.ui.Font;
@@ -17,18 +18,14 @@ import net.rim.device.api.ui.Graphics;
 import net.rim.device.api.ui.TransitionContext;
 import net.rim.device.api.ui.Ui;
 import net.rim.device.api.ui.UiEngineInstance;
-import net.rim.device.api.ui.XYEdges;
 import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.LabelField;
 import net.rim.device.api.ui.component.RichTextField;
-import net.rim.device.api.ui.component.SeparatorField;
 import net.rim.device.api.ui.component.Status;
 import net.rim.device.api.ui.container.HorizontalFieldManager;
 import net.rim.device.api.ui.container.VerticalFieldManager;
 import net.rim.device.api.ui.decor.BackgroundFactory;
-import net.rim.device.api.ui.decor.BorderFactory;
 import database.Autenticacion;
-import database.Config;
 import estilos.BitmapButtonField;
 import estilos.Metodos;
 
@@ -53,6 +50,10 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 	int imgIzquierda = 50;
 	int lblIzquierda = 50;
 	int lblTop = 110;
+	int descTop = 60;
+	int descAncho = 200;
+	int descAlto = 200;
+	int descIzquierda = 40;
 	String Nombre, Descripcion, Imagen, Regular;
 	String imgWeb;
 	int ancho;
@@ -66,6 +67,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 	
 	int compensacion = 0;
 	BitmapButtonField btnFacebook;
+	
 	public DetallePromocion(String titulo,String descripcion, String imagen,String precio){
 		Nombre 		= titulo;
 		Imagen 		= imagen;
@@ -83,9 +85,9 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 			headImage = Bitmap.getBitmapResource("titulo3_320.png");
 			imgWeb = "<img width='320' height='211'  src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			allContentH = 112;
-			
-			
-			lblIzquierda = 43;
+			descTop = 20;
+			descIzquierda = -30;
+			lblIzquierda = 20;
 			lblTop = 60;
 			imgIzquierda = 15;
 			
@@ -99,12 +101,13 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		if (Display.getWidth() == 360)
 		{
 			headImage = Bitmap.getBitmapResource("titulo3_360.png");
-			imgWeb = "<img width='360' height='200' src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
+			imgWeb = "<img width='360' height='215' src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			allContentH = 126;
-			
-			
-			lblIzquierda = 47;
-			lblTop = 67;
+			descAncho = 230;
+			descTop = 20;
+			descIzquierda = 5;
+			lblIzquierda = 25;
+			lblTop = 70;
 			imgIzquierda = 25;
 			
 			tFuente = 20;
@@ -118,11 +121,14 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 			imgWeb = "<img width='480' height='317'  src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			headImage = Bitmap.getBitmapResource("titulo3_480.png");
 			allContentH = 169;
+			descAncho = 300;
+			descAlto = 150;
+			descTop = 35;
+			descIzquierda = 20;
+			lblIzquierda = 40;
+			lblTop = 90;
 			
-			lblIzquierda = 65;
-			lblTop = 85;
-			
-			tFuente = 30;
+			tFuente = 27;
 			imgIzquierda = 40;
 					
 			facebook = Bitmap.getBitmapResource("facebook_400.png");
@@ -134,11 +140,14 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 			headImage = Bitmap.getBitmapResource("titulo3_640.png");
 			imgWeb = "<img width='640' height='422'  src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			allContentH = 224;
+			descAncho = 410;
+			descAlto = 250;
+			descTop =40;
+			descIzquierda = 50;
+			lblIzquierda = 60;
+			lblTop = 120;
 			
-			lblIzquierda = 85;
-			lblTop = 115;
-			
-			tFuente = 45;
+			tFuente = 38;
 			imgIzquierda = 50;
 			
 			facebook = Bitmap.getBitmapResource("facebook_540.png");
@@ -204,7 +213,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		            //define width
 		            public int getPreferredWidth()
 		            {
-		                return 90;
+		                return 70;
 		            }
 		            
 		            //define height
@@ -221,9 +230,9 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 		        };
 		        pContent.setMargin(lblTop, 0, 0, lblIzquierda);
 		        VerticalFieldManager dContent = new VerticalFieldManager();
-				dContent.setMargin(lblTop-30, 0, 0, lblIzquierda-35);
+				dContent.setMargin(descTop, 10, 0, descIzquierda);
 
-				lblPregular		= new RichTextField("$"+Regular, Field.FIELD_HCENTER){
+				lblPregular		= new RichTextField("$"+Regular, Field.FIELD_HCENTER | DrawStyle.ELLIPSIS){
 			        public void paint(Graphics g){      
 			            g.setColor(0x355298);
 			            super.paint(g);
@@ -238,11 +247,26 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 			        }};
 			    lblNombre.setMargin(0, 0, 0, 0);
 			    lblNombre.setFont(fBold);
-				lblDescripcion 	= new RichTextField(Descripcion){
+				lblDescripcion 	= new RichTextField(Descripcion, Field.FIELD_LEFT){
 			        public void paint(Graphics g){      
 			            g.setColor(Color.WHITE);
 			            super.paint(g);
-			        }};
+			        }
+			        public int getPreferredWidth()
+		            {
+		                return descAncho;
+		            }
+		            //define height
+		            public int getPreferredHeight()
+		            {
+		                return descAlto;
+		            }
+		            protected void layout( int maxWidth, int maxHeight )
+		            {
+		                super.layout(getPreferredWidth(), 
+		                                getPreferredHeight());
+		                setExtent(getPreferredWidth(), getPreferredHeight());
+		            }};
 			    lblDescripcion.setMargin(0, 0, 0, 0);
 				//lblDescripcion.setFont(fLite);
 				
@@ -260,7 +284,7 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 				
 				btnFacebook = new BitmapButtonField(facebook, facebook1);
 				btnFacebook.setChangeListener(this);
-				btnFacebook.setMargin(25,0,15,imgIzquierda);
+				btnFacebook.setMargin(20,0,10,imgIzquierda);
 				add(btnFacebook);
 			}
 	
@@ -293,3 +317,4 @@ public class DetallePromocion extends Metodos implements FieldChangeListener {
 	}
 
 }
+

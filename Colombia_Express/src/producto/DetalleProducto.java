@@ -91,7 +91,7 @@ public class DetalleProducto extends Metodos implements FieldChangeListener {
 			allContentH = 112;
 			descTop = 20;
 			descIzquierda = -30;
-			lblIzquierda = 43;
+			lblIzquierda = 20;
 			lblTop = 60;
 			imgIzquierda = 15;
 			
@@ -108,10 +108,10 @@ public class DetalleProducto extends Metodos implements FieldChangeListener {
 			imgWeb = "<img width='360' height='215' src='"+Imagen+"' style='border:0px solid ORANGE;margin-left: -8px;margin-top: -8px;margin-right: -8px;margin-bottom: -8px;'>";
 			allContentH = 126;
 			descAncho = 230;
-			descTop = 25;
-			descIzquierda = 10;
-			lblIzquierda = 50;
-			lblTop = 67;
+			descTop = 20;
+			descIzquierda = 5;
+			lblIzquierda = 25;
+			lblTop = 65;
 			imgIzquierda = 25;
 			
 			tFuente = 20;
@@ -128,9 +128,9 @@ public class DetalleProducto extends Metodos implements FieldChangeListener {
 			descAncho = 300;
 			descAlto = 150;
 			descTop = 35;
-			descIzquierda = 30;
-			lblIzquierda = 70;
-			lblTop = 85;
+			descIzquierda = 20;
+			lblIzquierda = 40;
+			lblTop = 90;
 			
 			tFuente = 27;
 			imgIzquierda = 40;
@@ -146,12 +146,12 @@ public class DetalleProducto extends Metodos implements FieldChangeListener {
 			allContentH = 224;
 			descAncho = 410;
 			descAlto = 250;
-			descTop =50;
-			descIzquierda = 60;
-			lblIzquierda = 100;
+			descTop =40;
+			descIzquierda = 50;
+			lblIzquierda = 60;
 			lblTop = 120;
 			
-			tFuente = 33;
+			tFuente = 38;
 			imgIzquierda = 50;
 			
 			facebook = Bitmap.getBitmapResource("facebook_540.png");

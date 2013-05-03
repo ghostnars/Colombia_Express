@@ -1,7 +1,7 @@
 package database;
 public class Config {
 	
-	private String version = "0.1.0.sqlite";
+	private String version = "0.1.2.sqlite";
 	private String path;
 	
 	public String Path(){

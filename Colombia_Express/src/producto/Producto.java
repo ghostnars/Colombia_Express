@@ -240,10 +240,12 @@ public class Producto extends Metodos implements FieldChangeListener
 					
 					Status.show("Parece que está en una conexion lenta, puede tardar un momento");
 					descargarDatos();
-					
+					//cargarDatos();
 				}else if(getTipo.equals("error")){
 					//Status.show("Error de red",1000 );
 					cambiar();
+				}else{
+					cambiar();	
 				}
 				
 			}else if(incremento >= 1){
@@ -360,6 +362,8 @@ public class Producto extends Metodos implements FieldChangeListener
 					precioReg ="";*/
 					
 	        	}
+            }else{
+            	cambiar();
             }
 	        
 	        cargarDatos();
